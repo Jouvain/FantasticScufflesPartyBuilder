@@ -1,4 +1,4 @@
-Transform these wireframes into a polished desktop-first Figma UI.
+Transform these wireframes into a polished desktop-first UI. Generate mockup images.
 
 Requirements:
 - responsive
