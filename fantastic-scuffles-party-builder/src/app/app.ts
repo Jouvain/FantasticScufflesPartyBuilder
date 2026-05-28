@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { PartyBuilderLayout } from "./layout/party-builder-layout/party-builder-layout";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [PartyBuilderLayout],
   templateUrl: './app.html',
   styleUrl: './app.less'
 })
