@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-btn-action',
@@ -7,5 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './btn-action.less',
 })
 export class BtnAction {
-  @Input() label: string = "Label";
+  label = input.required<string>();
+  icon = input.required<string>();
+  variant = input(false);
 }

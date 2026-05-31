@@ -1,0 +1,31 @@
+@import "../../../../../styles.less";
+
+.btn {
+    background-color: @background-surface;
+    border: 1px solid @background-strong;
+    padding: @space-md;
+    cursor: pointer;
+    border-radius: @space-xs;
+
+    display: flex;
+    align-items: center;
+    gap: @space-s;
+
+    &:hover {
+        background-color: @background-strong;
+    }
+
+    &_icon {
+        height: 36px;
+    }
+
+    &--variant {
+        background-color: @accent;
+        border: 1px solid @accent;
+        color: @lightest;
+
+        &:hover {
+            background-color: @strong;
+        }
+    }
+}
