@@ -10,4 +10,5 @@ export class BtnAction {
   label = input.required<string>();
   icon = input.required<string>();
   variant = input(false);
+  small = input(false);
 }
