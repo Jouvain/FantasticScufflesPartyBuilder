@@ -1,12 +1,27 @@
 @import "../../../../../styles.less";
 
-.constraints_list {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: @space-xl;
-    list-style: none;
-    background-color: @background-strong;
-    padding: @space-md;
-    border-radius: @space-s;
+.constraints {
+    &_list {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: @space-xl;
+        list-style: none;
+        background-color: @background-strong;
+        padding: @space-md;
+        border-radius: @space-s;
+    }
+
+    &_item {
+        display: flex;
+        align-items: center;
+        gap: @space-s;
+        background-color: @lightest;
+        padding: @space-xs;
+        border-radius: @space-xs;
+    }
+
+    &_icon {
+        height: 32px;
+    }
 }
