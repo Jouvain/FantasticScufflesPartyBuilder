@@ -1,16 +1,72 @@
 @import "../../../../../styles.less";
 
 .unit-card {
+    position: relative;
     border-radius: @space-md;
     border: 1px solid @background-strong;
     padding: @space-md;
+    height: 100%;
+    background-color: @background-secondary;
 }
 .unit-card_desc {
+    position: relative;
     display: flex;
     align-items: center;
     gap: @space-md;
 }
-.unit-card_stats {
+.desc_main{
+    display: flex;
+    align-items: center;
+    gap: @space-md;
+}
+.desc_float {
+    position: absolute;
+    right: @space-md;
+}
+.unit-stats {
+    width: 100%;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 2px solid @background-strong;
+    border-radius: @space-s;
+
+    th,
+    td {
+        text-align: center;
+        padding: @space-xs;
+        border: 1px solid @background-strong;
+    }
+
+    th {
+        background-color: @accent;
+        font-weight: bold;
+        color: @text-secondary;
+    }
+}
+
+
+.unit-card_equipment {
+    display: flex;
+}
+.unit-card_traits {
+    display: flex;
+}
+
+.unit-card_qty {
+    position: absolute;
+    right: @space-md;
+}
+
+.strong {
+    color: @strong;
+    margin-right: @space-md;
+}
+.list {
     display: flex;
     gap: @space-md;
 }
+.list--special {
+    padding-left: @space-xl;
+}
+
+
