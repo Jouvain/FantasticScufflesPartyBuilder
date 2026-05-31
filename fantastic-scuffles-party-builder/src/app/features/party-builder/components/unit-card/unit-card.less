@@ -1,5 +1,10 @@
 @import "../../../../../styles.less";
 
+.unit-listing() {
+    display: flex;
+    gap: @space-md;
+}
+
 .unit-card {
     position: relative;
     border-radius: @space-md;
@@ -8,21 +13,23 @@
     height: 100%;
     background-color: @background-secondary;
 }
+
 .unit-card_desc {
     position: relative;
-    display: flex;
     align-items: center;
-    gap: @space-md;
+    .unit-listing();
 }
-.desc_main{
-    display: flex;
+
+.desc_main {
+    .unit-listing();
     align-items: center;
-    gap: @space-md;
 }
+
 .desc_float {
     position: absolute;
     right: @space-md;
 }
+
 .unit-stats {
     width: 100%;
     border-spacing: 0;
@@ -45,11 +52,8 @@
 }
 
 
-.unit-card_equipment {
-    display: flex;
-}
-.unit-card_traits {
-    display: flex;
+.unit-card_slots {
+    .unit-listing();
 }
 
 .unit-card_qty {
@@ -59,14 +63,12 @@
 
 .strong {
     color: @strong;
-    margin-right: @space-md;
 }
+
 .list {
-    display: flex;
-    gap: @space-md;
+    .unit-listing();
 }
+
 .list--special {
     padding-left: @space-xl;
 }
-
-
