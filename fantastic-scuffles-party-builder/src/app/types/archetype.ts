@@ -1,0 +1,1 @@
+export type Archetype = 'warrior' | 'rogue' | 'sage' | 'minion';
