@@ -1,6 +1,6 @@
+import { ProfileDefinition } from "./profile-definition";
+
 export interface PartyDefinition {
     nom: string;
-    cost: number;
-    profileNumber: number;
-    characterNumber: number;
+    profiles: ProfileDefinition[]
 }

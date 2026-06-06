@@ -5,6 +5,7 @@ export interface TraitDefinition {
     name: string;
     special: string;
     cost: number;
-    profileAdjustment: ProfileAdjustment;
+    profileAdjustment: ProfileAdjustment[];
     characterOnly: boolean;
+    type: string
 }

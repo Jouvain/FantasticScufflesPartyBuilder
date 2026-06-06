@@ -1,8 +1,11 @@
 import { Archetype } from "../types/archetype";
 import { Size } from "../types/size";
-import { EquipmentDefinition } from "./equipment-definition";
+import { Trait } from "../types/trait-type";
+import { MeleeWeaponDefinition } from "./melee-weapon-definition";
+import { MiscDefinition } from "./misc-definition";
+import { MissileWeaponDefinition } from "./missile-weapon-definition";
 import { StatBlock } from "./stat-block";
-import { TraitDefinition } from "./traits-definition";
+
 
 export interface ProfileDefinition {
     id: number;
@@ -11,7 +14,11 @@ export interface ProfileDefinition {
     size: Size;
     isCharacter: boolean;
     stats: StatBlock;
-    equipment: EquipmentDefinition[];
-    traits: TraitDefinition[];
+    hand1: MeleeWeaponDefinition;
+    hand2: MeleeWeaponDefinition;
+    missile : MissileWeaponDefinition;
+    misc1: MiscDefinition;
+    misc2: MiscDefinition;
+    traits: Trait[];
     cost: number;
 }

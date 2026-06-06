@@ -1,6 +1,9 @@
+import { MiscDefinition } from "./misc-definition";
+
 export interface EquipmentDefinition {
-    id: number;
+    id: string;
     name: string;
     cost: number;
     special :string;
+    enhancement?: MiscDefinition;
 }
