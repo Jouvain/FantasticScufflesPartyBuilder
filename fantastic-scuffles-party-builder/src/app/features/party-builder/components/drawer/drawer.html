@@ -1,3 +1,144 @@
 <div class="drawer" [class.drawer--isOpen]="isOpen()">
     <h2>EDIT</h2>
+
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+        <label>
+            Nom :
+            <input type="text" formControlName="nom" />
+        </label>
+
+        <label>
+            Archetype :
+            <select formControlName="archetype">
+                @for (archetype of archetypes; track archetype) {
+                <option [value]="archetype">
+                    {{archetype}}
+                </option>
+                }
+            </select>
+        </label>
+
+        <label>
+            Size :
+            <select formControlName="size">
+                @for (size of sizes; track size) {
+                <option [value]="size">
+                    {{size}}
+                </option>
+                }
+            </select>
+        </label>
+
+        <label>
+            Hand 1 :
+            <select formControlName="hand1">
+                @for (weapon of meleeWeapons; track weapon) {
+                <option [ngValue]="weapon">
+                    {{weapon.name}}
+                </option>
+                }
+            </select>
+        </label>
+
+        <label>
+            Hand 2 :
+            <select formControlName="hand2">
+                @for (weapon of meleeWeapons; track weapon) {
+                <option [ngValue]="weapon">
+                    {{weapon.name}}
+                </option>
+                }
+            </select>
+        </label>
+
+        <label>
+            Missile :
+            <select formControlName="missile">
+                @for (weapon of missileWeapons; track weapon) {
+                <option [ngValue]="weapon">
+                    {{weapon.name}}
+                </option>
+                }
+            </select>
+        </label>
+
+        <label>
+            Armour :
+            <select formControlName="armour">
+                @for (armour of armors; track armour) {
+                <option [ngValue]="armour">
+                    {{armour.name}}
+                </option>
+                }
+            </select>
+        </label> 
+        
+        <label>
+            Misc 1 :
+            <select formControlName="misc1">
+                @for (item of miscItems; track item) {
+                <option [ngValue]="item">
+                    {{item.name}}
+                </option>
+                }
+            </select>
+        </label>  
+        
+        <label>
+            Misc 2 :
+            <select formControlName="misc2">
+                @for (item of miscItems; track item) {
+                <option [ngValue]="item">
+                    {{item.name}}
+                </option>
+                }
+            </select>
+        </label>   
+        
+        <fieldset>
+            <legend>Traits</legend>
+
+            <label>
+                Trait 1 : 
+                <select formControlName="trait1">
+                    @for (trait of traits; track trait) {
+                        <option [ngValue]="trait">
+                            {{trait.name}}
+                        </option>
+                    }
+                </select>
+            </label>
+            <label>
+                Trait 2 : 
+                <select formControlName="trait2">
+                    @for (trait of traits; track trait) {
+                        <option [ngValue]="trait">
+                            {{trait.name}}
+                        </option>
+                    }
+                </select>
+            </label>   
+            <label>
+                Trait 3 : 
+                <select formControlName="trait3">
+                    @for (trait of traits; track trait) {
+                        <option [ngValue]="trait">
+                            {{trait.name}}
+                        </option>
+                    }
+                </select>
+            </label>
+            <label>
+                Trait 4 : 
+                <select formControlName="trait4">
+                    @for (trait of traits; track trait) {
+                        <option [ngValue]="trait">
+                            {{trait.name}}
+                        </option>
+                    }
+                </select>
+            </label>
+        </fieldset>
+
+    </form>
 </div>
