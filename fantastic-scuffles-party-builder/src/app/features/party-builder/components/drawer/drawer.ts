@@ -16,6 +16,7 @@ import { MISSILE_WEAPONS } from '../../../../data/missile-weapons';
 import { MISC } from '../../../../data/misc';
 import { TRAITS } from '../../../../data/traits';
 import { DrawerStore } from '../../services/drawer-store';
+import { PartyStore } from '../../services/party-store';
 
 type ProfileForm = {
   id: FormControl<number>;
@@ -69,6 +70,7 @@ export class Drawer {
   private readonly destroyRef = inject(DestroyRef);
 
   public readonly drawerStore = inject(DrawerStore);
+  public readonly partyStore = inject(PartyStore);
 
   isOpen = input<boolean>(false);
   profile = input<ProfileDefinition | null>(null);
@@ -111,6 +113,7 @@ export class Drawer {
       return;
     }
 
+    this.partyStore.addProfile(newProfile);
     this.drawerStore.close();
     console.log(newProfile);
   }

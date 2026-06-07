@@ -5,6 +5,7 @@ import { Constraints } from "../../features/party-builder/components/constraints
 import { Roster } from "../../features/party-builder/components/roster/roster";
 import { Drawer } from "../../features/party-builder/components/drawer/drawer";
 import { DrawerStore } from '../../features/party-builder/services/drawer-store';
+import { PartyStore } from '../../features/party-builder/services/party-store';
 
 @Component({
   selector: 'app-party-builder-layout',
@@ -12,7 +13,7 @@ import { DrawerStore } from '../../features/party-builder/services/drawer-store'
   templateUrl: './party-builder-layout.html',
   styleUrl: './party-builder-layout.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DrawerStore]
+  providers: [DrawerStore, PartyStore]
 })
 export class PartyBuilderLayout {
 

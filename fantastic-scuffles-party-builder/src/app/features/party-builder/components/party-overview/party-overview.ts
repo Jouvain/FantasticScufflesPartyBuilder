@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { BtnAction } from "../btn-action/btn-action";
 import { DrawerStore } from '../../services/drawer-store';
+import { PartyStore } from '../../services/party-store';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { DrawerStore } from '../../services/drawer-store';
 })
 export class PartyOverview {
   private readonly drawerStore = inject(DrawerStore);
+  public readonly partyStore = inject(PartyStore);
 
   createProfile(): void {
     this.drawerStore.open();
