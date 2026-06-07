@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject, input, output } from '@angular/core';
 import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Archetype } from '../../../../types/archetype';
 import { Size } from '../../../../types/size';
@@ -63,6 +64,9 @@ const defaultMisc2 = MISC.find((misc) => misc.id === "Talisman") ?? MISC[0];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Drawer {
+  private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
+
   isOpen = input<boolean>(false);
   profile = input<ProfileDefinition | null>(null);
   profileSaved = output<ProfileDefinition>();
@@ -81,6 +85,14 @@ export class Drawer {
   constructor() {
     effect(() => {
       this.profileForm = this.createProfileForm(this.profile());
+    });
+
+    effect(() => {
+      this.document.body.classList.toggle('drawer-open', this.isOpen());
+    });
+
+    this.destroyRef.onDestroy(() => {
+      this.document.body.classList.remove('drawer-open');
     });
   }
 

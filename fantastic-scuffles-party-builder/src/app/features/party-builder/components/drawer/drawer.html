@@ -1,9 +1,9 @@
 <div class="drawer" [class.drawer--isOpen]="isOpen()">
-    @if(profile()) {
+    <!-- @if(profile()) {
     <h2>EDIT</h2>
     } @else {
     <h2>CREATE</h2>
-    }
+    } -->
 
 
     <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
