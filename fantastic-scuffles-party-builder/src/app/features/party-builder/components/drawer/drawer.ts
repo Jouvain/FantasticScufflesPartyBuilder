@@ -15,6 +15,7 @@ import { MELEE_WEAPONS } from '../../../../data/melee-weapons';
 import { MISSILE_WEAPONS } from '../../../../data/missile-weapons';
 import { MISC } from '../../../../data/misc';
 import { TRAITS } from '../../../../data/traits';
+import { DrawerStore } from '../../services/drawer-store';
 
 type ProfileForm = {
   id: FormControl<number>;
@@ -67,6 +68,8 @@ export class Drawer {
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
 
+  public readonly drawerStore = inject(DrawerStore);
+
   isOpen = input<boolean>(false);
   profile = input<ProfileDefinition | null>(null);
   profileSaved = output<ProfileDefinition>();
@@ -88,7 +91,7 @@ export class Drawer {
     });
 
     effect(() => {
-      this.document.body.classList.toggle('drawer-open', this.isOpen());
+      this.document.body.classList.toggle('drawer-open', this.drawerStore.isOpen());
     });
 
     this.destroyRef.onDestroy(() => {
@@ -108,8 +111,13 @@ export class Drawer {
       return;
     }
 
-    this.profileSaved.emit(newProfile);
+    this.drawerStore.close();
     console.log(newProfile);
+  }
+
+  public cancel(): void {
+    console.log("test");
+    this.drawerStore.close();
   }
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { UnitCard } from "../unit-card/unit-card";
 
 @Component({
@@ -6,5 +6,8 @@ import { UnitCard } from "../unit-card/unit-card";
   imports: [UnitCard],
   templateUrl: './roster.html',
   styleUrl: './roster.less',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Roster {}
+export class Roster {
+  
+}

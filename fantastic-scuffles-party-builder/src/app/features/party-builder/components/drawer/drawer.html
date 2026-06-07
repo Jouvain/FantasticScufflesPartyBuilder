@@ -1,4 +1,5 @@
-<div class="drawer" [class.drawer--isOpen]="isOpen()">
+<div class="drawer" [class.drawer--isOpen]="drawerStore.isOpen()" [attr.aria-hidden]="!drawerStore.isOpen()" [attr.inert]="drawerStore.isOpen() ? null : ''"
+    role="dialog" aria-modal="true">
     <!-- @if(profile()) {
     <h2>EDIT</h2>
     } @else {
@@ -198,8 +199,14 @@
             </label>
         </fieldset>
 
-        <button type="submit">
-            Save
-        </button>
+        <div class="buttons">
+            <button type="submit">
+                Save
+            </button>
+            <button type="button" (click)="cancel()">
+                Cancel
+            </button>
+        </div>
+
     </form>
 </div>
