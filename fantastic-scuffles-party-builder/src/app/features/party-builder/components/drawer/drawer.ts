@@ -97,7 +97,7 @@ export class Drawer {
     }
 
     this.profileSaved.emit(newProfile);
-
+    console.log(newProfile);
   }
 
 
@@ -152,14 +152,14 @@ export class Drawer {
 
   private createStatsForm(stats?: StatBlock): FormGroup<StatBlockForm> {
     return new FormGroup<StatBlockForm>({
-      res: new FormControl(stats?.res ?? 0, { nonNullable: true }),
-      attH1: new FormControl(stats?.attH1 ?? 0, { nonNullable: true }),
-      attH2: new FormControl(stats?.attH2 ?? 0, { nonNullable: true }),
-      sht: new FormControl(stats?.sht ?? 0, { nonNullable: true }),
-      mov: new FormControl(stats?.mov ?? 0, { nonNullable: true }),
-      dva: new FormControl(stats?.dva ?? 0, { nonNullable: true }),
-      dvs: new FormControl(stats?.dvs ?? 0, { nonNullable: true }),
-      wnd: new FormControl(stats?.wnd ?? 0, { nonNullable: true }),
+      res: new FormControl(stats?.res ?? 5, { nonNullable: true }),
+      attH1: new FormControl(stats?.attH1 ?? -1, { nonNullable: true }),
+      attH2: new FormControl(stats?.attH2 ?? 5, { nonNullable: true }),
+      sht: new FormControl(stats?.sht ?? 6, { nonNullable: true }),
+      mov: new FormControl(stats?.mov ?? 4, { nonNullable: true }),
+      dva: new FormControl(stats?.dva ?? 5, { nonNullable: true }),
+      dvs: new FormControl(stats?.dvs ?? 5, { nonNullable: true }),
+      wnd: new FormControl(stats?.wnd ?? 3, { nonNullable: true }),
     });
   }
 

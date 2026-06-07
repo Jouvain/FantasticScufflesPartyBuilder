@@ -1,18 +1,242 @@
+// @import "../../../../../styles.less";
+
+// .drawer {
+//     display: none;
+
+//     &--isOpen {
+//         display: flex;
+//         background-color: @background-surface;
+//         border-radius: @space-md 0 0 0;
+//         border: 1px solid @background-strong;
+//         width: 50vw;
+//         height: 100%;
+//         z-index: 10;
+//         position: absolute;
+//         top: 0;
+//         left: 50%;
+//     }
+// }
+
+
+//-----------------------------------------------------CODEX---------------//
+
 @import "../../../../../styles.less";
+
+.form-row() {
+    display: flex;
+    gap: @space-md;
+    align-items: center;
+}
+
+.form-field() {
+    display: flex;
+    flex-direction: column;
+    gap: @space-xs;
+}
 
 .drawer {
     display: none;
 
     &--isOpen {
         display: flex;
-        background-color: @background-surface;
-        border-radius: @space-md 0 0 0;
-        border: 1px solid @background-strong;
-        width: 50vw;
-        height: 100%;
-        z-index: 10;
+        flex-direction: column;
+        gap: @space-md;
+
         position: absolute;
         top: 0;
         left: 50%;
+        z-index: 10;
+
+        width: 50vw;
+        height: 100%;
+        box-sizing: border-box;
+        overflow-y: auto;
+
+        padding: @space-md;
+
+        background-color: @background-surface;
+        border: 1px solid @background-strong;
+        border-radius: @space-md 0 0 0;
+    }
+
+    h2 {
+        margin: 0;
+        color: @accent;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: @space-md;
+    }
+
+    label {
+        .form-field();
+
+        color: @strong;
+        font-weight: bold;
+    }
+
+    input,
+    select {
+        box-sizing: border-box;
+        width: 100%;
+
+        padding: @space-s;
+
+        background-color: @background-secondary;
+        border: 1px solid @background-strong;
+        border-radius: @space-xs;
+
+        color: @text-primary;
+        font: inherit;
+
+        &:focus {
+            outline: 2px solid @accent;
+            outline-offset: 2px;
+        }
+    }
+
+    input[readonly] {
+        background-color: @background-surface;
+        color: @strong;
+        cursor: default;
+    }
+
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        gap: @space-md;
+
+        margin: 0;
+        padding: @space-md;
+
+        background-color: @background-secondary;
+        border: 1px solid @background-strong;
+        border-radius: @space-md;
+    }
+    .fieldset {
+        &--col2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+       &--col3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+       }    
+    }
+
+
+    legend {
+        padding: 0 @space-s;
+        color: @accent;
+        font-weight: bold;
+    }
+
+    button[type="submit"] {
+        align-self: flex-end;
+
+        padding: @space-s @space-md;
+
+        background-color: @accent;
+        border: 1px solid @accent;
+        border-radius: @space-xs;
+
+        color: @lightest;
+        font: inherit;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+            background-color: @strong;
+            border-color: @strong;
+        }
+
+        &:focus {
+            outline: 2px solid @strong;
+            outline-offset: 2px;
+        }
+    }
+}
+
+.drawer-section {
+    display: flex;
+    flex-direction: column;
+    gap: @space-md;
+
+    padding: @space-md;
+
+    background-color: @background-secondary;
+    border: 1px solid @background-strong;
+    border-radius: @space-md;
+}
+
+.drawer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: @space-md;
+}
+
+.drawer-grid--stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.drawer-stats {
+    width: 100%;
+    border-spacing: 0;
+    overflow: hidden;
+
+    border: 2px solid @background-strong;
+    border-radius: @space-s;
+
+    th,
+    td {
+        text-align: center;
+        padding: @space-xs;
+        border: 1px solid @background-strong;
+    }
+
+    th {
+        background-color: @accent;
+        color: @text-secondary;
+        font-weight: bold;
+    }
+
+    td {
+        background-color: @background-secondary;
+    }
+
+    input {
+        padding: 0;
+        text-align: center;
+        border: 0;
+        background-color: transparent;
+        color: @text-primary;
+
+        &:focus {
+            outline: 2px solid @accent;
+            outline-offset: 1px;
+        }
+    }
+}
+
+.drawer-actions {
+    .form-row();
+
+    justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+    .drawer {
+        &--isOpen {
+            left: 0;
+            width: 100vw;
+            border-radius: 0;
+        }
+    }
+
+    .drawer-grid,
+    .drawer-grid--stats {
+        grid-template-columns: 1fr;
     }
 }
