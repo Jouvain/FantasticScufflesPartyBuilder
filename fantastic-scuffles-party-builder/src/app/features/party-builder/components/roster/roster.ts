@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
 import { UnitCard } from "../unit-card/unit-card";
+import { PartyStore } from '../../services/party-store';
 
 @Component({
   selector: 'app-roster',
@@ -9,5 +10,5 @@ import { UnitCard } from "../unit-card/unit-card";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Roster {
-  
+  public readonly partyStore: PartyStore = inject(PartyStore);
 }

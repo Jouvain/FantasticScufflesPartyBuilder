@@ -8,8 +8,6 @@
 
 
     <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
-
-
         <fieldset class="fieldset--col3">
             <legend>Role</legend>
             <label>
@@ -201,7 +199,7 @@
 
         <div class="buttons">
             <button type="submit">
-                Save
+                {{ drawerStore.profile() ? "Edit" : "Save"}}
             </button>
             <button type="button" (click)="cancel()">
                 Cancel

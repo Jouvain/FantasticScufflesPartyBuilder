@@ -15,6 +15,6 @@ export class PartyOverview {
   public readonly partyStore = inject(PartyStore);
 
   createProfile(): void {
-    this.drawerStore.open();
+    this.drawerStore.openForCreate();
   }
 }

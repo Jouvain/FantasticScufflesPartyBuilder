@@ -73,7 +73,6 @@ export class Drawer {
   public readonly partyStore = inject(PartyStore);
 
   isOpen = input<boolean>(false);
-  profile = input<ProfileDefinition | null>(null);
   profileSaved = output<ProfileDefinition>();
 
   meleeWeapons = MELEE_WEAPONS;
@@ -89,7 +88,7 @@ export class Drawer {
 
   constructor() {
     effect(() => {
-      this.profileForm = this.createProfileForm(this.profile());
+      this.profileForm = this.createProfileForm(this.drawerStore.profile());
     });
 
     effect(() => {
@@ -113,7 +112,13 @@ export class Drawer {
       return;
     }
 
-    this.partyStore.addProfile(newProfile);
+    if(this.drawerStore.profile()) {
+      this.partyStore.updateProfile(newProfile);
+    } else {
+      this.partyStore.addProfile(newProfile);
+    }
+
+    this.profileForm.reset();
     this.drawerStore.close();
     console.log(newProfile);
   }
@@ -208,9 +213,9 @@ export class Drawer {
       misc1: raw.misc1,
       misc2: raw.misc2,
       trait1: raw.trait1,
-      trait2: raw.trait1,
-      trait3: raw.trait1,
-      trait4: raw.trait1,
+      trait2: raw.trait2,
+      trait3: raw.trait3,
+      trait4: raw.trait4,
       cost: raw.cost,
     };
   }
