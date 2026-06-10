@@ -17,6 +17,8 @@ import { MISC } from '../../../../data/misc';
 import { TRAITS } from '../../../../data/traits';
 import { DrawerStore } from '../../services/drawer-store';
 import { PartyStore } from '../../services/party-store';
+import { deriveIsCharacter } from '../../rules/profile-derivation-rules';
+import { deriveQuantity } from '../../rules/profile-derivation-rules';
 
 type ProfileForm = {
   id: FormControl<number>;
@@ -194,6 +196,7 @@ export class Drawer {
 
   private toProfileDefinition(): ProfileDefinition | null {
     const raw = this.profileForm.getRawValue();
+    const existing = this.drawerStore.profile();
 
     if (!raw.hand1 || !raw.hand2 || !raw.missile || !raw.misc1 || !raw.misc2) {
       return null;
@@ -204,7 +207,7 @@ export class Drawer {
       nom: raw.nom,
       archetype: raw.archetype,
       size: raw.size,
-      isCharacter: raw.isCharacter,
+      isCharacter: deriveIsCharacter(raw.archetype),
       stats: raw.stats,
       hand1: raw.hand1,
       hand2: raw.hand2,
@@ -217,7 +220,8 @@ export class Drawer {
       trait3: raw.trait3,
       trait4: raw.trait4,
       cost: raw.cost,
-      quantity: this.drawerStore.profile() ? this.drawerStore.profile()?.quantity! : 1
+      quantity: deriveQuantity(raw.archetype, existing?.quantity)
+      // quantity: this.drawerStore.profile() ? this.drawerStore.profile()?.quantity! : 1
     };
   }
 
