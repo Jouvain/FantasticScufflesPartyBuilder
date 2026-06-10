@@ -26,4 +26,5 @@ export interface ProfileDefinition {
     trait3: Trait | null;
     trait4: Trait | null;
     cost: number;
+    quantity: number;
 }

@@ -217,6 +217,7 @@ export class Drawer {
       trait3: raw.trait3,
       trait4: raw.trait4,
       cost: raw.cost,
+      quantity: this.drawerStore.profile() ? this.drawerStore.profile()?.quantity! : 1
     };
   }
 

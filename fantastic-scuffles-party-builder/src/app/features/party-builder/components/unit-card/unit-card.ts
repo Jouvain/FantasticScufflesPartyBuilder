@@ -16,15 +16,26 @@ export class UnitCard {
   private readonly drawerStore = inject(DrawerStore);
   public readonly partyStore = inject(PartyStore);
   profile = input<ProfileDefinition>();
-  
+
   public edit(): void {
     this.drawerStore.openForEdit(this.profile()!);
   }
 
   public delete(profileId: number | undefined): void {
-    if(!profileId) {
+    if (!profileId) {
       return;
     }
     this.partyStore.removeProfile(profileId);
   }
+
+  public duplicate(profile: ProfileDefinition): void {
+    profile.quantity += 1;
+  }
+
+  public removeOne(profile: ProfileDefinition): void {
+    if (profile.quantity > 1) {
+      profile.quantity -= 1;
+    }
+  }
+
 }
