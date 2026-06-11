@@ -61,3 +61,12 @@ export function deriveBaseStats(archetype: Archetype): StatBlock {
             };
     }
 }
+
+export function deriveBaseCost(archetype: Archetype): number {
+    switch(archetype) {
+        case "warrior": return 10;
+        case "sage": return 10;
+        case "rogue": return 10;
+        case "minion": return 3;
+    }
+}

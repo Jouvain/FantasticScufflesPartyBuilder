@@ -20,6 +20,7 @@ import { PartyStore } from '../../services/party-store';
 import { deriveIsCharacter } from '../../rules/profile-derivation-rules';
 import { deriveQuantity } from '../../rules/profile-derivation-rules';
 import { deriveBaseStats } from '../../rules/profile-derivation-rules';
+import { deriveBaseCost } from '../../rules/profile-derivation-rules';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 type ProfileForm = {
@@ -175,7 +176,7 @@ export class Drawer {
       trait2: new FormControl(profile?.trait2 ?? null),
       trait3: new FormControl(profile?.trait3 ?? null),
       trait4: new FormControl(profile?.trait4 ?? null),
-      cost: new FormControl(profile?.cost ?? 0, {
+      cost: new FormControl(profile?.cost ?? deriveBaseCost(profile?.archetype ?? "warrior"), {
         nonNullable: true,
         validators: [Validators.min(0)]
       })
@@ -232,6 +233,8 @@ export class Drawer {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((archetype) => {
       const baseStats = deriveBaseStats(archetype);
+      const baseCost = deriveBaseCost(archetype);
+      this.profileForm.controls.cost.patchValue(baseCost, {emitEvent: false});
       this.profileForm.controls.stats.patchValue(baseStats, {emitEvent: false});
     });
   }
