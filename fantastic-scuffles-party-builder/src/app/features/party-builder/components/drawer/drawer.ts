@@ -19,6 +19,8 @@ import { DrawerStore } from '../../services/drawer-store';
 import { PartyStore } from '../../services/party-store';
 import { deriveIsCharacter } from '../../rules/profile-derivation-rules';
 import { deriveQuantity } from '../../rules/profile-derivation-rules';
+import { deriveBaseStats } from '../../rules/profile-derivation-rules';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 type ProfileForm = {
   id: FormControl<number>;
@@ -91,6 +93,7 @@ export class Drawer {
   constructor() {
     effect(() => {
       this.profileForm = this.createProfileForm(this.drawerStore.profile());
+      this.watchStatDerivation();
     });
 
     effect(() => {
@@ -149,7 +152,7 @@ export class Drawer {
       isCharacter: new FormControl(profile?.isCharacter ?? false, {
         nonNullable: true
       }),
-      stats: this.createStatsForm(profile?.stats),
+      stats: this.createStatsForm(profile?.stats ?? deriveBaseStats(profile?.archetype ?? "warrior")),
       hand1: new FormControl(profile?.hand1 ?? defaultHand1, {
         nonNullable: true
       }),
@@ -221,8 +224,16 @@ export class Drawer {
       trait4: raw.trait4,
       cost: raw.cost,
       quantity: deriveQuantity(raw.archetype, existing?.quantity)
-      // quantity: this.drawerStore.profile() ? this.drawerStore.profile()?.quantity! : 1
     };
+  }
+
+  private watchStatDerivation(): void {
+    this.profileForm.controls.archetype.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((archetype) => {
+      const baseStats = deriveBaseStats(archetype);
+      this.profileForm.controls.stats.patchValue(baseStats, {emitEvent: false});
+    });
   }
 
 }
