@@ -1,4 +1,3 @@
-import { TraitDefinition } from "../models/traits-definition";
 import { Trait } from "../types/trait-type";
 
 export const TRAITS: Trait[] = [
@@ -10,8 +9,16 @@ export const TRAITS: Trait[] = [
         characterOnly: false,
         type: 'trait',
         profileAdjustment: [
-            {stat: "dva", modifier: 1},
-            {stat: "dvs", modifier: 1}
+            {
+                kind: "direct-stat",
+                stat: "dva",
+                modifier: 1
+            },
+            {
+                kind: "direct-stat",
+                stat: "dvs",
+                modifier: 1
+            }
         ]
     },
     {
@@ -23,6 +30,6 @@ export const TRAITS: Trait[] = [
         type: 'spell',
         profileAdjustment: [],
         range: 12
-    }    
-    
+    }
+
 ]

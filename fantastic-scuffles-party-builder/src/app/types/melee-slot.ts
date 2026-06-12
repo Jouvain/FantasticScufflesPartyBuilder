@@ -1,0 +1,1 @@
+export type MeleeSlot = "hand1" | "hand2";

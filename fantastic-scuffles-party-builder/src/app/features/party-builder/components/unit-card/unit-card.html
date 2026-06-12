@@ -44,8 +44,14 @@
     <div class="unit-card_slots">
         <p class="strong">Equipment :</p>
         <div class="list">
-            <p>{{profile()?.hand1?.name}}</p>
-            <p>{{profile()?.hand2?.name}}</p>
+            <p>{{profile()?.hand1?.weapon?.name}}</p>
+            @if(profile()?.hand1?.enhancement; as enhancement) {
+                <p>{{enhancement.name}} (Hand 1)</p>
+            }
+            <p>{{profile()?.hand2?.weapon?.name}}</p>
+            @if(profile()?.hand2?.enhancement; as enhancement) {
+                <p>{{enhancement.name}} (Hand 2)</p>
+            }
             <p>{{profile()?.missile?.name}}</p>
             <p>{{profile()?.armour?.name}}</p>
             <p>{{profile()?.misc1?.name}}</p>

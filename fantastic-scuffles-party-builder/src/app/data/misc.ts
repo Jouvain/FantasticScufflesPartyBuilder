@@ -6,9 +6,9 @@ export const MISC: MiscDefinition[] = [
         name: "Balanced weapon",
         cost: 3,
         special: "",
-        isWeaponEnhancement: true,
-        profileAdjustment: [
-            {stat:"att", modifier: 1}
+        kind: "weapon-enhancement",
+        profileAdjustments: [
+            { kind: "equipped-melee-attack", modifier: 1 }
         ]
     },
     {
@@ -16,9 +16,9 @@ export const MISC: MiscDefinition[] = [
         name: "Talisman",
         cost: 2,
         special: "",
-        isWeaponEnhancement: false,
-        profileAdjustment: [
-            {stat:"Res", modifier: -1}
+        kind: "standalone",
+        profileAdjustments: [
+            { kind: "direct-stat", stat: "res", modifier: -1 }
         ]
     }    
 ]

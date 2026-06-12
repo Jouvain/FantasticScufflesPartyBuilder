@@ -123,15 +123,22 @@
         border: 1px solid @background-strong;
         border-radius: @space-md;
     }
+
     .fieldset {
         &--col2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
         }
-       &--col3 {
+
+        &--col3 {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-       }    
+        }
+
+        &--col4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
     }
 
 
@@ -165,8 +172,9 @@
             outline-offset: 2px;
         }
     }
+
     button[type="button"] {
-           align-self: flex-end;
+        align-self: flex-end;
 
         padding: @space-s @space-md;
 
@@ -187,7 +195,7 @@
         &:focus {
             outline: 2px solid @strong;
             outline-offset: 2px;
-        }     
+        }
     }
 }
 

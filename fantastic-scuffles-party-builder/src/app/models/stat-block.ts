@@ -8,3 +8,5 @@ export interface StatBlock {
   dvs: number;
   wnd: number;
 }
+
+export type StatName = keyof StatBlock;

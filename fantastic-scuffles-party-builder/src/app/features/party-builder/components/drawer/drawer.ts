@@ -1,11 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject, input, output } from '@angular/core';
-import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Archetype } from '../../../../types/archetype';
 import { Size } from '../../../../types/size';
 import { MeleeWeaponDefinition } from '../../../../models/melee-weapon-definition';
 import { MissileWeaponDefinition } from '../../../../models/missile-weapon-definition';
-import { MiscDefinition } from '../../../../models/misc-definition';
+import { StandaloneMiscDefinition, WeaponEnhancementDefinition } from '../../../../models/misc-definition';
 import { Trait } from '../../../../types/trait-type';
 import { ProfileDefinition } from '../../../../models/profile-definition';
 import { StatBlock } from '../../../../models/stat-block';
@@ -17,11 +17,15 @@ import { MISC } from '../../../../data/misc';
 import { TRAITS } from '../../../../data/traits';
 import { DrawerStore } from '../../services/drawer-store';
 import { PartyStore } from '../../services/party-store';
-import { deriveIsCharacter } from '../../rules/profile-derivation-rules';
-import { deriveQuantity } from '../../rules/profile-derivation-rules';
-import { deriveBaseStats } from '../../rules/profile-derivation-rules';
-import { deriveBaseCost } from '../../rules/profile-derivation-rules';
+import {
+  deriveBaseCost,
+  deriveBaseStats,
+  deriveProfile,
+  deriveQuantity,
+  ProfileDerivationInput
+} from '../../rules/profile-derivation-rules';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { EquippedMeleeWeapon } from '../../../../models/equipped-melee-weapon';
 
 type ProfileForm = {
   id: FormControl<number>;
@@ -30,18 +34,23 @@ type ProfileForm = {
   size: FormControl<Size>;
   isCharacter: FormControl<boolean>;
   stats: FormGroup<StatBlockForm>;
-  hand1: FormControl<MeleeWeaponDefinition>;
-  hand2: FormControl<MeleeWeaponDefinition>;
+  hand1: FormGroup<EquippedMeleeWeaponForm>;
+  hand2: FormGroup<EquippedMeleeWeaponForm>;
   missile: FormControl<MissileWeaponDefinition>;
   armour: FormControl<ArmorDefinition>;
-  misc1: FormControl<MiscDefinition>;
-  misc2: FormControl<MiscDefinition>;
+  misc1: FormControl<StandaloneMiscDefinition | null>;
+  misc2: FormControl<StandaloneMiscDefinition | null>;
   trait1: FormControl<Trait | null>;
   trait2: FormControl<Trait | null>;
   trait3: FormControl<Trait | null>;
   trait4: FormControl<Trait | null>;
   cost: FormControl<number>;
 }
+
+type EquippedMeleeWeaponForm = {
+  weapon: FormControl<MeleeWeaponDefinition>;
+  enhancement: FormControl<WeaponEnhancementDefinition | null>;
+};
 
 type StatBlockForm = {
   res: FormControl<number>;
@@ -55,12 +64,24 @@ type StatBlockForm = {
 };
 
 
+export const WEAPON_ENHANCEMENTS =
+  MISC.filter(
+    (item): item is WeaponEnhancementDefinition =>
+      item.kind === "weapon-enhancement"
+  );
+
+export const STANDALONE_MISC =
+  MISC.filter(
+    (item): item is StandaloneMiscDefinition =>
+      item.kind === "standalone"
+  );
+
 const defaultHand1 = MELEE_WEAPONS.find((weapon) => weapon.id === "Axe") ?? MELEE_WEAPONS[0];
 const defaultHand2 = MELEE_WEAPONS.find((weapon) => weapon.id === "Axe") ?? MELEE_WEAPONS[0];
 const defaultMissile = MISSILE_WEAPONS.find((missile) => missile.id === "Arquebus") ?? MISSILE_WEAPONS[0];
 const defaultArmour = ARMORS.find((armour) => armour.id === "Light armour") ?? ARMORS[0];
-const defaultMisc1 = MISC.find((misc) => misc.id === "Talisman") ?? MISC[0];
-const defaultMisc2 = MISC.find((misc) => misc.id === "Talisman") ?? MISC[0];
+const defaultMisc1 = STANDALONE_MISC.find(item => item.id === "Talisman") ?? null;
+const defaultMisc2 = STANDALONE_MISC.find(item => item.id === "Talisman") ?? null;
 
 
 @Component({
@@ -83,7 +104,8 @@ export class Drawer {
   meleeWeapons = MELEE_WEAPONS;
   missileWeapons = MISSILE_WEAPONS;
   armors = ARMORS;
-  miscItems = MISC;
+  weaponEnhancements = WEAPON_ENHANCEMENTS;
+  standaloneMiscItems = STANDALONE_MISC;
   traits = TRAITS;
 
   archetypes: Archetype[] = ['warrior', 'sage', 'rogue', 'minion'];
@@ -94,6 +116,7 @@ export class Drawer {
   constructor() {
     effect(() => {
       this.profileForm = this.createProfileForm(this.drawerStore.profile());
+      this.refreshDerivedProfile();
       this.watchStatDerivation();
     });
 
@@ -114,11 +137,11 @@ export class Drawer {
 
     const newProfile = this.toProfileDefinition();
 
-    if(!newProfile) {
+    if (!newProfile) {
       return;
     }
 
-    if(this.drawerStore.profile()) {
+    if (this.drawerStore.profile()) {
       this.partyStore.updateProfile(newProfile);
     } else {
       this.partyStore.addProfile(newProfile);
@@ -154,11 +177,15 @@ export class Drawer {
         nonNullable: true
       }),
       stats: this.createStatsForm(profile?.stats ?? deriveBaseStats(profile?.archetype ?? "warrior")),
-      hand1: new FormControl(profile?.hand1 ?? defaultHand1, {
-        nonNullable: true
+      hand1: this.createMeleeWeaponForm({
+        slot: "hand1",
+        weapon: profile?.hand1.weapon ?? defaultHand1,
+        enhancement: profile?.hand1.enhancement ?? null
       }),
-      hand2: new FormControl(profile?.hand2 ?? defaultHand2, {
-        nonNullable: true
+      hand2: this.createMeleeWeaponForm({
+        slot: "hand2",
+        weapon: profile?.hand2.weapon ?? defaultHand2,
+        enhancement: profile?.hand2.enhancement ?? null
       }),
       missile: new FormControl(profile?.missile ?? defaultMissile, {
         nonNullable: true
@@ -166,12 +193,8 @@ export class Drawer {
       armour: new FormControl(profile?.armour ?? defaultArmour, {
         nonNullable: true
       }),
-      misc1: new FormControl(profile?.misc1 ?? defaultMisc1, {
-        nonNullable: true
-      }),
-      misc2: new FormControl(profile?.misc2 ?? defaultMisc2, {
-        nonNullable: true
-      }),
+      misc1: new FormControl(profile?.misc1 ?? defaultMisc1),
+      misc2: new FormControl(profile?.misc2 ?? defaultMisc2),
       trait1: new FormControl(profile?.trait1 ?? null),
       trait2: new FormControl(profile?.trait2 ?? null),
       trait3: new FormControl(profile?.trait3 ?? null),
@@ -197,24 +220,37 @@ export class Drawer {
     });
   }
 
+  private createMeleeWeaponForm(
+    equipped: EquippedMeleeWeapon
+  ): FormGroup<EquippedMeleeWeaponForm> {
+    return new FormGroup({
+      weapon: new FormControl(equipped.weapon, { nonNullable: true }),
+      enhancement: new FormControl(equipped.enhancement)
+    });
+  }
+
 
   private toProfileDefinition(): ProfileDefinition | null {
     const raw = this.profileForm.getRawValue();
     const existing = this.drawerStore.profile();
-
-    if (!raw.hand1 || !raw.hand2 || !raw.missile || !raw.misc1 || !raw.misc2) {
-      return null;
-    }
 
     return {
       id: raw.id,
       nom: raw.nom,
       archetype: raw.archetype,
       size: raw.size,
-      isCharacter: deriveIsCharacter(raw.archetype),
+      isCharacter: raw.isCharacter,
       stats: raw.stats,
-      hand1: raw.hand1,
-      hand2: raw.hand2,
+      hand1: {
+        slot: "hand1",
+        weapon: raw.hand1.weapon,
+        enhancement: raw.hand1.enhancement
+      },
+      hand2: {
+        slot: "hand2",
+        weapon: raw.hand2.weapon,
+        enhancement: raw.hand2.enhancement
+      },
       missile: raw.missile,
       armour: raw.armour,
       misc1: raw.misc1,
@@ -229,14 +265,52 @@ export class Drawer {
   }
 
   private watchStatDerivation(): void {
-    this.profileForm.controls.archetype.valueChanges
+    this.profileForm.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((archetype) => {
-      const baseStats = deriveBaseStats(archetype);
-      const baseCost = deriveBaseCost(archetype);
-      this.profileForm.controls.cost.patchValue(baseCost, {emitEvent: false});
-      this.profileForm.controls.stats.patchValue(baseStats, {emitEvent: false});
-    });
+      .subscribe(() => this.refreshDerivedProfile());
+  }
+
+
+  private refreshDerivedProfile(): void {
+    const result = deriveProfile(this.buildDerivationInput());
+
+    this.profileForm.patchValue({
+      stats: result.stats,
+      cost: result.cost,
+      isCharacter: result.isCharacter
+    }, { emitEvent: false });
+  }
+
+  private buildDerivationInput(): ProfileDerivationInput {
+    const raw = this.profileForm.getRawValue();
+
+    return {
+      archetype: raw.archetype,
+      size: raw.size,
+
+      hand1: {
+        slot: "hand1",
+        weapon: raw.hand1.weapon,
+        enhancement: raw.hand1.enhancement
+      },
+
+      hand2: {
+        slot: "hand2",
+        weapon: raw.hand2.weapon,
+        enhancement: raw.hand2.enhancement
+      },
+
+      missile: raw.missile,
+      armour: raw.armour,
+
+      miscItems: [raw.misc1, raw.misc2].filter(
+        (item): item is StandaloneMiscDefinition => item !== null
+      ),
+
+      traits: [raw.trait1, raw.trait2, raw.trait3, raw.trait4].filter(
+        (trait): trait is Trait => trait !== null
+      )
+    };
   }
 
 }

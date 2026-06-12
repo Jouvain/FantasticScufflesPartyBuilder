@@ -1,7 +1,17 @@
 import { EquipmentDefinition } from "./equipment-definition";
 import { ProfileAdjustment } from "./profile-adjustment";
 
-export interface MiscDefinition extends EquipmentDefinition {
-    profileAdjustment: ProfileAdjustment[];
-    isWeaponEnhancement: boolean;
+
+interface BaseMiscDefinition extends EquipmentDefinition {
+    profileAdjustments: ProfileAdjustment[];
 }
+
+export interface StandaloneMiscDefinition extends BaseMiscDefinition {
+  kind: "standalone";
+}
+
+export interface WeaponEnhancementDefinition extends BaseMiscDefinition {
+  kind: "weapon-enhancement";
+}
+
+export type MiscDefinition = StandaloneMiscDefinition | WeaponEnhancementDefinition;

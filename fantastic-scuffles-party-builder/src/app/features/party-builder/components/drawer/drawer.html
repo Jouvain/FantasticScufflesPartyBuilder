@@ -1,5 +1,5 @@
-<div class="drawer" [class.drawer--isOpen]="drawerStore.isOpen()" [attr.aria-hidden]="!drawerStore.isOpen()" [attr.inert]="drawerStore.isOpen() ? null : ''"
-    role="dialog" aria-modal="true">
+<div class="drawer" [class.drawer--isOpen]="drawerStore.isOpen()" [attr.aria-hidden]="!drawerStore.isOpen()"
+    [attr.inert]="drawerStore.isOpen() ? null : ''" role="dialog" aria-modal="true">
     <!-- @if(profile()) {
     <h2>EDIT</h2>
     } @else {
@@ -84,33 +84,62 @@
 
         <fieldset class="fieldset--col3">
             <legend>Weapons</legend>
-            <label>
-                Hand 1 :
-                <select formControlName="hand1">
-                    @for (weapon of meleeWeapons; track weapon) {
-                    <option [ngValue]="weapon">
-                        {{weapon.name}}
-                    </option>
-                    }
-                </select>
-            </label>
+            <div formGroupName="hand1">
+                <label>
+                    Weapon:
+                    <select formControlName="weapon">
+                        @for (weapon of meleeWeapons; track weapon.id) {
+                        <option [ngValue]="weapon">
+                            {{ weapon.name }}
+                        </option>
+                        }
+                    </select>
+                </label>
 
+                <label>
+                    Enhancement:
+                    <select formControlName="enhancement">
+                        <option [ngValue]="null">None</option>
+
+                        @for (item of weaponEnhancements; track item.id) {
+                        <option [ngValue]="item">
+                            {{ item.name }}
+                        </option>
+                        }
+                    </select>
+                </label>
+            </div>
+            <div formGroupName="hand2">
+                <label>
+                    Weapon:
+                    <select formControlName="weapon">
+                        @for (weapon of meleeWeapons; track weapon.id) {
+                        <option [ngValue]="weapon">
+                            {{ weapon.name }}
+                        </option>
+                        }
+                    </select>
+                </label>
+
+                <label>
+                    Enhancement:
+                    <select formControlName="enhancement">
+                        <option [ngValue]="null">None</option>
+
+                        @for (item of weaponEnhancements; track item.id) {
+                        <option [ngValue]="item">
+                            {{ item.name }}
+                        </option>
+                        }
+                    </select>
+                </label>
+            </div>
             <label>
-                Hand 2 :
-                <select formControlName="hand2">
-                    @for (weapon of meleeWeapons; track weapon) {
-                    <option [ngValue]="weapon">
-                        {{weapon.name}}
-                    </option>
-                    }
-                </select>
-            </label>
-            <label>
-                Missile :
+                Missile:
                 <select formControlName="missile">
-                    @for (weapon of missileWeapons; track weapon) {
+                    @for (weapon of missileWeapons; track weapon.id) {
                     <option [ngValue]="weapon">
-                        {{weapon.name}}
+                        {{ weapon.name }}
                     </option>
                     }
                 </select>
@@ -132,9 +161,11 @@
             <label>
                 Misc 1 :
                 <select formControlName="misc1">
-                    @for (item of miscItems; track item) {
+                    <option [ngValue]="null">None</option>
+
+                    @for (item of standaloneMiscItems; track item.id) {
                     <option [ngValue]="item">
-                        {{item.name}}
+                        {{ item.name }}
                     </option>
                     }
                 </select>
@@ -143,21 +174,24 @@
             <label>
                 Misc 2 :
                 <select formControlName="misc2">
-                    @for (item of miscItems; track item) {
+                    <option [ngValue]="null">None</option>
+
+                    @for (item of standaloneMiscItems; track item.id) {
                     <option [ngValue]="item">
-                        {{item.name}}
+                        {{ item.name }}
                     </option>
                     }
                 </select>
             </label>
         </fieldset>
 
-        <fieldset class="fieldset--col2">
+        <fieldset class="fieldset--col4">
             <legend>Traits</legend>
 
             <label>
                 Trait 1 :
                 <select formControlName="trait1">
+                    <option [ngValue]="null">None</option>
                     @for (trait of traits; track trait) {
                     <option [ngValue]="trait">
                         {{trait.name}}
@@ -168,6 +202,7 @@
             <label>
                 Trait 2 :
                 <select formControlName="trait2">
+                    <option [ngValue]="null">None</option>
                     @for (trait of traits; track trait) {
                     <option [ngValue]="trait">
                         {{trait.name}}
@@ -178,6 +213,7 @@
             <label>
                 Trait 3 :
                 <select formControlName="trait3">
+                    <option [ngValue]="null">None</option>
                     @for (trait of traits; track trait) {
                     <option [ngValue]="trait">
                         {{trait.name}}
@@ -188,6 +224,7 @@
             <label>
                 Trait 4 :
                 <select formControlName="trait4">
+                    <option [ngValue]="null">None</option>
                     @for (trait of traits; track trait) {
                     <option [ngValue]="trait">
                         {{trait.name}}
