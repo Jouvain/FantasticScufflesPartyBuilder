@@ -93,7 +93,7 @@ export const MELEE_WEAPONS: MeleeWeaponDefinition[] = [
     },
     {
         id: "Spear",
-        name: "Single",
+        name: "Spear",
         cost: 3,
         special: "On foot : make opportunity before a charging ennemy ; Mounted : =1 rtW when charging",
         attModifier: 1,
