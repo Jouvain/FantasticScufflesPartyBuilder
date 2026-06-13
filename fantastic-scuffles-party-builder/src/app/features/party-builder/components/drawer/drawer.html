@@ -252,10 +252,27 @@
             <button type="submit">
                 {{ drawerStore.profile() ? "Edit" : "Save"}}
             </button>
+            <button type="button" class="optional" (click)="toggleRuleModal()">
+                View rules ?
+            </button>
             <button type="button" (click)="cancel()">
                 Cancel
             </button>
         </div>
 
     </form>
+    @if(isRuleModalOpen) {
+    <div class="ruleModal">
+        <div class="ruleModal_controls">
+            <h2>Special rules</h2>
+            <button type="button" (click)="toggleRuleModal()">Close</button>
+        </div>
+        <div class="ruleModal_rules">
+            <p>
+                {{profileForm.getRawValue().hand1.weapon.name}} : {{profileForm.getRawValue().hand1.weapon.special}}
+            </p>
+        </div>
+    </div>
+    }
+
 </div>

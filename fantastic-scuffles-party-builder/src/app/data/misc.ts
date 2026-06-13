@@ -92,7 +92,7 @@ export const MISC: MiscDefinition[] = [
         name: "Lockpicks",
         cost: 3,
         special: "Roll 2D10 on thievery against locked chest/doors, apply the higher",
-        kind: "weapon-enhancement",
+        kind: "standalone",
         profileAdjustments: []
     },
     {
@@ -126,6 +126,14 @@ export const MISC: MiscDefinition[] = [
         name: "Poisoned",
         cost: 3,
         special: "If inflict at least 1 Wnd on attack, inflict another Wnd",
+        kind: "weapon-enhancement",
+        profileAdjustments: []
+    },
+        {
+        id: "Renowned",
+        name: "Renowned",
+        cost: 6,
+        special: "May reroll attack's rtW",
         kind: "weapon-enhancement",
         profileAdjustments: []
     },

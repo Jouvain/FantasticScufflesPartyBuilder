@@ -82,12 +82,12 @@ export const STANDALONE_MISC =
       item.kind === "standalone"
   );
 
-const defaultHand1 = MELEE_WEAPONS.find((weapon) => weapon.id === "Axe") ?? MELEE_WEAPONS[0];
-const defaultHand2 = MELEE_WEAPONS.find((weapon) => weapon.id === "Axe") ?? MELEE_WEAPONS[0];
-const defaultMissile = MISSILE_WEAPONS.find((missile) => missile.id === "Arquebus") ?? MISSILE_WEAPONS[0];
-const defaultArmour = ARMORS.find((armour) => armour.id === "Light armour") ?? ARMORS[0];
-const defaultMisc1 = STANDALONE_MISC.find(item => item.id === "Talisman") ?? null;
-const defaultMisc2 = STANDALONE_MISC.find(item => item.id === "Talisman") ?? null;
+const defaultHand1 = MELEE_WEAPONS[0];
+const defaultHand2 = MELEE_WEAPONS[0];
+const defaultMissile = MISSILE_WEAPONS[0];
+const defaultArmour = ARMORS[0];
+const defaultMisc1 = null;
+const defaultMisc2 = null;
 
 
 
@@ -106,6 +106,7 @@ export class Drawer {
   public readonly partyStore = inject(PartyStore);
 
   isOpen = input<boolean>(false);
+  isRuleModalOpen = false;
   profileSaved = output<ProfileDefinition>();
 
   meleeWeapons = MELEE_WEAPONS;
@@ -165,6 +166,9 @@ export class Drawer {
     this.drawerStore.close();
   }
 
+  public toggleRuleModal(): void {
+    this.isRuleModalOpen = !this.isRuleModalOpen;
+  }
 
   private createProfileForm(profile?: ProfileDefinition | null): FormGroup<ProfileForm> {
     return new FormGroup<ProfileForm>({
