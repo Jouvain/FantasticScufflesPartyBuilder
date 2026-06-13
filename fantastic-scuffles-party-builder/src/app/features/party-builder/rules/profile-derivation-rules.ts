@@ -1,6 +1,6 @@
 import { ArmorDefinition } from "../../../models/armor-definition";
 import { EquippedMeleeWeapon } from "../../../models/equipped-melee-weapon";
-import { StandaloneMiscDefinition } from "../../../models/misc-definition";
+import { MissileEnhancementDefinition, StandaloneMiscDefinition } from "../../../models/misc-definition";
 import { MissileWeaponDefinition } from "../../../models/missile-weapon-definition";
 import { ProfileAdjustment } from "../../../models/profile-adjustment";
 import { StatBlock } from "../../../models/stat-block";
@@ -114,6 +114,7 @@ export interface ProfileDerivationInput {
   hand1: EquippedMeleeWeapon;
   hand2: EquippedMeleeWeapon;
   missile: MissileWeaponDefinition;
+  missileMisc: MissileEnhancementDefinition | null;
   armour: ArmorDefinition;
   miscItems: StandaloneMiscDefinition[];
   traits: Trait[];
@@ -189,6 +190,13 @@ export function deriveStats(
   stats.sht += input.missile.shtModifier;
   stats.dva += input.armour.dvaModifier;
   stats.dvs += input.armour.dvsModifier;
+
+  if(input.missileMisc) {
+    for (const adjustment of input.missileMisc?.profileAdjustments) {
+      applyAdjustment(stats, adjustment);
+    }
+  }
+
 
   for (const item of input.miscItems) {
     for (const adjustment of item.profileAdjustments) {

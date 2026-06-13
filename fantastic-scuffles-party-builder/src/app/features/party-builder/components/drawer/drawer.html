@@ -125,7 +125,6 @@
                     Enhancement:
                     <select formControlName="enhancement">
                         <option [ngValue]="null">None</option>
-
                         @for (item of weaponEnhancements; track item.id) {
                         <option [ngValue]="item">
                             {{ item.name }}
@@ -134,16 +133,31 @@
                     </select>
                 </label>
             </div>
-            <label>
-                Missile:
-                <select formControlName="missile">
-                    @for (weapon of missileWeapons; track weapon.id) {
-                    <option [ngValue]="weapon">
-                        {{ weapon.name }}
-                    </option>
-                    }
-                </select>
-            </label>
+
+            <div>
+                <label>
+                    Missile:
+                    <select formControlName="missile">
+                        @for (weapon of missileWeapons; track weapon.id) {
+                        <option [ngValue]="weapon">
+                            {{ weapon.name }}
+                        </option>
+                        }
+                    </select>
+                </label>
+                <label>
+                    Enhancement:
+                    <select formControlName="missileMisc">
+                        <option [ngValue]="null">None</option>
+                        @for (item of missileWeaponEnhancements; track item.id) {
+                        <option [ngValue]="item">
+                            {{ item.name }}
+                        </option>
+                        }
+                    </select>
+                </label>
+            </div>
+
         </fieldset>
 
         <fieldset class="fieldset--col3">

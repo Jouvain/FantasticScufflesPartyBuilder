@@ -14,4 +14,8 @@ export interface WeaponEnhancementDefinition extends BaseMiscDefinition {
   kind: "weapon-enhancement";
 }
 
-export type MiscDefinition = StandaloneMiscDefinition | WeaponEnhancementDefinition;
+export interface MissileEnhancementDefinition extends BaseMiscDefinition {
+  kind: "missile-enhancement";
+}
+
+export type MiscDefinition = StandaloneMiscDefinition | WeaponEnhancementDefinition | MissileEnhancementDefinition;

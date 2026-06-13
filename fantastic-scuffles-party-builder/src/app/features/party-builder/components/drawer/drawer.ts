@@ -5,7 +5,7 @@ import { Archetype } from '../../../../types/archetype';
 import { Size } from '../../../../types/size';
 import { MeleeWeaponDefinition } from '../../../../models/melee-weapon-definition';
 import { MissileWeaponDefinition } from '../../../../models/missile-weapon-definition';
-import { StandaloneMiscDefinition, WeaponEnhancementDefinition } from '../../../../models/misc-definition';
+import { MissileEnhancementDefinition, StandaloneMiscDefinition, WeaponEnhancementDefinition } from '../../../../models/misc-definition';
 import { Trait } from '../../../../types/trait-type';
 import { ProfileDefinition } from '../../../../models/profile-definition';
 import { StatBlock } from '../../../../models/stat-block';
@@ -37,6 +37,7 @@ type ProfileForm = {
   hand1: FormGroup<EquippedMeleeWeaponForm>;
   hand2: FormGroup<EquippedMeleeWeaponForm>;
   missile: FormControl<MissileWeaponDefinition>;
+  missileMisc: FormControl<MissileEnhancementDefinition | null>;
   armour: FormControl<ArmorDefinition>;
   misc1: FormControl<StandaloneMiscDefinition | null>;
   misc2: FormControl<StandaloneMiscDefinition | null>;
@@ -70,6 +71,11 @@ export const WEAPON_ENHANCEMENTS =
       item.kind === "weapon-enhancement"
   );
 
+export const MISSILE_ENHANCEMENTS = MISC.filter(
+  (item): item is WeaponEnhancementDefinition =>
+    item.kind === "missile-enhancement"
+);
+
 export const STANDALONE_MISC =
   MISC.filter(
     (item): item is StandaloneMiscDefinition =>
@@ -82,6 +88,7 @@ const defaultMissile = MISSILE_WEAPONS.find((missile) => missile.id === "Arquebu
 const defaultArmour = ARMORS.find((armour) => armour.id === "Light armour") ?? ARMORS[0];
 const defaultMisc1 = STANDALONE_MISC.find(item => item.id === "Talisman") ?? null;
 const defaultMisc2 = STANDALONE_MISC.find(item => item.id === "Talisman") ?? null;
+
 
 
 @Component({
@@ -105,6 +112,7 @@ export class Drawer {
   missileWeapons = MISSILE_WEAPONS;
   armors = ARMORS;
   weaponEnhancements = WEAPON_ENHANCEMENTS;
+  missileWeaponEnhancements = MISSILE_ENHANCEMENTS;
   standaloneMiscItems = STANDALONE_MISC;
   traits = TRAITS;
 
@@ -190,6 +198,7 @@ export class Drawer {
       missile: new FormControl(profile?.missile ?? defaultMissile, {
         nonNullable: true
       }),
+      missileMisc: new FormControl(profile?.missileMisc ?? null),
       armour: new FormControl(profile?.armour ?? defaultArmour, {
         nonNullable: true
       }),
@@ -230,6 +239,8 @@ export class Drawer {
   }
 
 
+
+
   private toProfileDefinition(): ProfileDefinition | null {
     const raw = this.profileForm.getRawValue();
     const existing = this.drawerStore.profile();
@@ -252,6 +263,7 @@ export class Drawer {
         enhancement: raw.hand2.enhancement
       },
       missile: raw.missile,
+      missileMisc: raw.missileMisc,
       armour: raw.armour,
       misc1: raw.misc1,
       misc2: raw.misc2,
@@ -302,6 +314,7 @@ export class Drawer {
 
       missile: raw.missile,
       armour: raw.armour,
+      missileMisc: raw.missileMisc,
 
       miscItems: [raw.misc1, raw.misc2].filter(
         (item): item is StandaloneMiscDefinition => item !== null

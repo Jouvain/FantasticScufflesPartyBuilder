@@ -3,7 +3,7 @@ import { Size } from "../types/size";
 import { Trait } from "../types/trait-type";
 import { ArmorDefinition } from "./armor-definition";
 import { EquippedMeleeWeapon } from "./equipped-melee-weapon";
-import { StandaloneMiscDefinition } from "./misc-definition";
+import { MissileEnhancementDefinition, StandaloneMiscDefinition } from "./misc-definition";
 import { MissileWeaponDefinition } from "./missile-weapon-definition";
 import { StatBlock } from "./stat-block";
 
@@ -18,6 +18,7 @@ export interface ProfileDefinition {
     hand1: EquippedMeleeWeapon;
     hand2: EquippedMeleeWeapon;
     missile : MissileWeaponDefinition;
+    missileMisc: MissileEnhancementDefinition | null;
     armour: ArmorDefinition;
     misc1: StandaloneMiscDefinition | null;
     misc2: StandaloneMiscDefinition | null;

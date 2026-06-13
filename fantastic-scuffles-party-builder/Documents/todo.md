@@ -9,8 +9,8 @@
 [ ] budget dynamique
 [ ] données complètes
     [x] armures
-    [ ] armes mêlée
-    [ ] armes de tir
+    [x] armes mêlée
+    [x] armes de tir
     [ ] traits
     [ ] spells
     [ ] misc

@@ -12,6 +12,26 @@ export const MISC: MiscDefinition[] = [
         ]
     },
     {
+        id: "Balanced missile",
+        name: "Balanced missile",
+        cost: 3,
+        special: "",
+        kind: "missile-enhancement",
+        profileAdjustments: [
+            { kind: "direct-stat", stat: "sht", modifier: 1 }
+        ]
+    },
+    {
+        id: "Balanced weapon",
+        name: "Balanced weapon",
+        cost: 3,
+        special: "",
+        kind: "weapon-enhancement",
+        profileAdjustments: [
+            { kind: "equipped-melee-attack", modifier: 1 }
+        ]
+    },
+    {
         id: "Talisman",
         name: "Talisman",
         cost: 2,
@@ -20,5 +40,143 @@ export const MISC: MiscDefinition[] = [
         profileAdjustments: [
             { kind: "direct-stat", stat: "res", modifier: -1 }
         ]
-    }    
+    },
+    {
+        id: "Balanced weapon",
+        name: "Balanced weapon",
+        cost: 3,
+        special: "",
+        kind: "weapon-enhancement",
+        profileAdjustments: [
+            { kind: "equipped-melee-attack", modifier: 1 }
+        ]
+    },
+    {
+        id: "Talisman",
+        name: "Talisman",
+        cost: 2,
+        special: "",
+        kind: "standalone",
+        profileAdjustments: [
+            { kind: "direct-stat", stat: "res", modifier: -1 }
+        ]
+    },
+    {
+        id: "Balanced weapon",
+        name: "Balanced weapon",
+        cost: 3,
+        special: "",
+        kind: "weapon-enhancement",
+        profileAdjustments: [
+            { kind: "equipped-melee-attack", modifier: 1 }
+        ]
+    },
+    {
+        id: "Talisman",
+        name: "Talisman",
+        cost: 2,
+        special: "",
+        kind: "standalone",
+        profileAdjustments: [
+            { kind: "direct-stat", stat: "res", modifier: -1 }
+        ]
+    },
+    {
+        id: "Balanced weapon",
+        name: "Balanced weapon",
+        cost: 3,
+        special: "",
+        kind: "weapon-enhancement",
+        profileAdjustments: [
+            { kind: "equipped-melee-attack", modifier: 1 }
+        ]
+    },
+    {
+        id: "Talisman",
+        name: "Talisman",
+        cost: 2,
+        special: "",
+        kind: "standalone",
+        profileAdjustments: [
+            { kind: "direct-stat", stat: "res", modifier: -1 }
+        ]
+    },
+    {
+        id: "Balanced weapon",
+        name: "Balanced weapon",
+        cost: 3,
+        special: "",
+        kind: "weapon-enhancement",
+        profileAdjustments: [
+            { kind: "equipped-melee-attack", modifier: 1 }
+        ]
+    },
+    {
+        id: "Talisman",
+        name: "Talisman",
+        cost: 2,
+        special: "",
+        kind: "standalone",
+        profileAdjustments: [
+            { kind: "direct-stat", stat: "res", modifier: -1 }
+        ]
+    },
+    {
+        id: "Balanced weapon",
+        name: "Balanced weapon",
+        cost: 3,
+        special: "",
+        kind: "weapon-enhancement",
+        profileAdjustments: [
+            { kind: "equipped-melee-attack", modifier: 1 }
+        ]
+    },
+    {
+        id: "Talisman",
+        name: "Talisman",
+        cost: 2,
+        special: "",
+        kind: "standalone",
+        profileAdjustments: [
+            { kind: "direct-stat", stat: "res", modifier: -1 }
+        ]
+    }, {
+        id: "Balanced weapon",
+        name: "Balanced weapon",
+        cost: 3,
+        special: "",
+        kind: "weapon-enhancement",
+        profileAdjustments: [
+            { kind: "equipped-melee-attack", modifier: 1 }
+        ]
+    },
+    {
+        id: "Talisman",
+        name: "Talisman",
+        cost: 2,
+        special: "",
+        kind: "standalone",
+        profileAdjustments: [
+            { kind: "direct-stat", stat: "res", modifier: -1 }
+        ]
+    }, {
+        id: "Balanced weapon",
+        name: "Balanced weapon",
+        cost: 3,
+        special: "",
+        kind: "weapon-enhancement",
+        profileAdjustments: [
+            { kind: "equipped-melee-attack", modifier: 1 }
+        ]
+    },
+    {
+        id: "Talisman",
+        name: "Talisman",
+        cost: 2,
+        special: "",
+        kind: "standalone",
+        profileAdjustments: [
+            { kind: "direct-stat", stat: "res", modifier: -1 }
+        ]
+    }
 ]
