@@ -268,9 +268,17 @@
             <button type="button" (click)="toggleRuleModal()">Close</button>
         </div>
         <div class="ruleModal_rules">
-            <p>
-                {{profileForm.getRawValue().hand1.weapon.name}} : {{profileForm.getRawValue().hand1.weapon.special}}
-            </p>
+            <p>{{profileForm.getRawValue().archetype}} : {{archetypeSpecials[profileForm.getRawValue().archetype]}}</p>
+            <p>{{profileForm.getRawValue().size}} : {{sizeSpecials[profileForm.getRawValue().size]}}</p>
+            <p>{{profileForm.getRawValue().hand1.weapon.name}} : {{profileForm.getRawValue().hand1.weapon.special}}</p>
+            <p>{{profileForm.getRawValue().hand2.weapon.name}} : {{profileForm.getRawValue().hand2.weapon.special}}</p>
+            <p>{{profileForm.getRawValue().missile.name}} : {{profileForm.getRawValue().missileMisc?.special}}</p>
+            <p>{{profileForm.getRawValue().misc1?.name}} : {{profileForm.getRawValue().misc1?.special}}</p>
+            <p>{{profileForm.getRawValue().misc2?.name}} : {{profileForm.getRawValue().misc2?.special}}</p>
+            <p>{{profileForm.getRawValue().trait1?.name}} : {{profileForm.getRawValue().trait1?.special}}</p>
+            <p>{{profileForm.getRawValue().trait2?.name}} : {{profileForm.getRawValue().trait2?.special}}</p>
+            <p>{{profileForm.getRawValue().trait3?.name}} : {{profileForm.getRawValue().trait3?.special}}</p>
+            <p>{{profileForm.getRawValue().trait4?.name}} : {{profileForm.getRawValue().trait4?.special}}</p>
         </div>
     </div>
     }

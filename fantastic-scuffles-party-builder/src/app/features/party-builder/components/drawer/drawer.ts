@@ -117,6 +117,20 @@ export class Drawer {
   standaloneMiscItems = STANDALONE_MISC;
   traits = TRAITS;
 
+  archetypeSpecials: Record<Archetype, string> = {
+    warrior: "Can attack with each Action during the same activation",
+    sage: "+2 to casting rolls",
+    rogue: "+2 to thievery rolls",
+    minion: ""
+  }
+
+  sizeSpecials: Record<Size, string> = {
+    small: "+1 to thievery rolls",
+    average: "",
+    large: "-1 rtW for opponents",
+    huge: "-2 rtW for opponents"
+  }
+
   archetypes: Archetype[] = ['warrior', 'sage', 'rogue', 'minion'];
   sizes: Size[] = ['small', 'average', 'large', 'huge'];
 
