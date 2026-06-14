@@ -29,7 +29,8 @@ export const TRAITS: Trait[] = [
         characterOnly: true,
         type: 'spell',
         profileAdjustment: [],
-        range: 12
+        range: 12,
+        difficulty: 5
     }
 
 ]
