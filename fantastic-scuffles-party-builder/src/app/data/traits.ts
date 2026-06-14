@@ -432,6 +432,221 @@ export const TRAITS: Trait[] = [
         ]
     },
     {
+        id: 29,
+        name: "Incorporeal",
+        special: "Ignore all terrain and melee modifiers ; can pass through impassable terrain ; may not carry out nor suffers thievery, shots and attacks (except 'renowned' and 'cursed' ones)",
+        cost: 9,
+        characterOnly: true,
+        type: 'trait',
+        profileAdjustment: [
+            {
+                kind: "direct-stat",
+                stat: "wnd",
+                modifier: -2
+            }
+        ]
+    },
+    {
+        id: 30,
+        name: "Intimidate",
+        special: "May use an Interact Action to cause all ennemies within 2'' to Resolve",
+        cost: 4,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 31,
+        name: "Light touch",
+        special: "+2 on thievery rolls",
+        cost: 2,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 32,
+        name: "Lucky",
+        special: "Ignore the first rtW roll that should be fatal",
+        cost: 4,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 33,
+        name: "Malodorous",
+        special: "-1 Att to all models within 2'', -2 if Mounted ; ignore other 'Malodorous'",
+        cost: 2,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 34,
+        name: "Mindless",
+        special: "Unless within 6'' of a non-mindless friend, only 1 Action par Activation ; never fail Resolve ; 2 Actions for thievery",
+        cost: 0,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+            {
+                kind: "direct-stat",
+                stat: "wnd",
+                modifier: 1
+            },
+            {
+                kind: "direct-stat",
+                stat: "sht",
+                modifier: -1
+            },
+            {
+                kind: "direct-stat",
+                stat: "mov",
+                modifier: -1
+            }
+        ]
+    },
+    {
+        id: 35,
+        name: "Nocturnal",
+        special: "Ignore darkness penalties ; if at least 50% of party is 'nocturnal', may apply -1 or -2 to environmental roll",
+        cost: 0,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+            {
+                kind: "direct-stat",
+                stat: "sht",
+                modifier: -1
+            }
+        ]
+    },
+    {
+        id: 36,
+        name: "Opportunistic",
+        special: "+1 Att for opportunity's attacks",
+        cost: 3,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 37,
+        name: "Proud",
+        special: "Ignore Resolve rolls for a killed part member",
+        cost: 5,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 38,
+        name: "Reckless",
+        special: "",
+        cost: 0,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+            {
+                kind: "direct-stat",
+                stat: "mov",
+                modifier: 1
+            },
+            {
+                kind: "direct-stat",
+                stat: "dva",
+                modifier: -2
+            },
+            {
+                kind: "direct-stat",
+                stat: "dvs",
+                modifier: -1
+            },
+            {
+                kind: "direct-stat",
+                stat: "attH1",
+                modifier: 1
+            },
+            {
+                kind: "direct-stat",
+                stat: "attH2",
+                modifier: 1
+            }
+        ]
+    },
+    {
+        id: 39,
+        name: "Regenerate",
+        special: "May use 1 Interact Action to try to regenerate : 1D10 for each Wound, each 8+ restore one",
+        cost: 5,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 40,
+        name: "Resolute",
+        special: "Ignore Wound modifier for Resolve rolls",
+        cost: 3,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 41,
+        name: "Robust",
+        special: "-1 rtW to opponents",
+        cost: 5,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+            {
+                kind: "direct-stat",
+                stat: "wnd",
+                modifier: 1
+            }
+        ]
+    },
+    {
+        id: 42,
+        name: "Sadistic",
+        special: "+1 Att while in contact with a wounded ennemy",
+        cost: 3,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 43,
+        name: "Sacrifice",
+        special: "May use an Interact Action to kill a friend in contact for granting a critical succes in casting Roll in the same Activation OR te be eaten if also have 'Feast'",
+        cost: 2,
+        characterOnly: true,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 44,
+        name: "Scavenger",
+        special: "May reroll loot roll during campaign encounter",
+        cost: 2,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
         id: 100,
         name: "Bless",
         special: "the target gains +5 to their next die roll",
