@@ -7,5 +7,7 @@ export interface TraitDefinition {
     cost: number;
     profileAdjustment: ProfileAdjustment[];
     characterOnly: boolean;
-    type: string
+    type: string;
+    difficulty?: number;
+    range?: number
 }

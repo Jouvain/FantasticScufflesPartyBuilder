@@ -313,14 +313,36 @@
             }
 
             @if(profileForm.getRawValue().trait1?.special != "") {
-
-                <p><strong>{{profileForm.getRawValue().trait1?.name}} :</strong> {{profileForm.getRawValue().trait1?.special}}</p>
+                @if(profileForm.getRawValue().trait1?.type === "spell") {
+                    <p><strong>{{profileForm.getRawValue().trait1?.name}} ({{profileForm.getRawValue().trait1?.difficulty}}+ //  {{profileForm.getRawValue().trait1?.difficulty}}'') :</strong> {{profileForm.getRawValue().trait1?.special}}</p>
+                } @else {
+                    <p><strong>{{profileForm.getRawValue().trait1?.name}} :</strong> {{profileForm.getRawValue().trait1?.special}}</p>
+                }
             }
-            
-            
-            <p>{{profileForm.getRawValue().trait2?.name}} : {{profileForm.getRawValue().trait2?.special}}</p>
-            <p>{{profileForm.getRawValue().trait3?.name}} : {{profileForm.getRawValue().trait3?.special}}</p>
-            <p>{{profileForm.getRawValue().trait4?.name}} : {{profileForm.getRawValue().trait4?.special}}</p>
+
+            @if(profileForm.getRawValue().trait2?.special != "") {
+                @if(profileForm.getRawValue().trait2?.type === "spell") {
+                    <p><strong>{{profileForm.getRawValue().trait2?.name}} ({{profileForm.getRawValue().trait2?.difficulty}}+ //  {{profileForm.getRawValue().trait2?.difficulty}}'') :</strong> {{profileForm.getRawValue().trait2?.special}}</p>
+                } @else {
+                    <p><strong>{{profileForm.getRawValue().trait2?.name}} :</strong> {{profileForm.getRawValue().trait2?.special}}</p>
+                }
+            }
+
+            @if(profileForm.getRawValue().trait3?.special != "") {
+                @if(profileForm.getRawValue().trait3?.type === "spell") {
+                    <p><strong>{{profileForm.getRawValue().trait3?.name}} ({{profileForm.getRawValue().trait3?.difficulty}}+ //  {{profileForm.getRawValue().trait3?.difficulty}}'') :</strong> {{profileForm.getRawValue().trait3?.special}}</p>
+                } @else {
+                    <p><strong>{{profileForm.getRawValue().trait3?.name}} :</strong> {{profileForm.getRawValue().trait3?.special}}</p>
+                }
+            }
+
+            @if(profileForm.getRawValue().trait4?.special != "") {
+                @if(profileForm.getRawValue().trait4?.type === "spell") {
+                    <p><strong>{{profileForm.getRawValue().trait4?.name}} ({{profileForm.getRawValue().trait4?.difficulty}}+ //  {{profileForm.getRawValue().trait4?.difficulty}}'') :</strong> {{profileForm.getRawValue().trait4?.special}}</p>
+                } @else {
+                    <p><strong>{{profileForm.getRawValue().trait4?.name}} :</strong> {{profileForm.getRawValue().trait4?.special}}</p>
+                }
+            }
         </div>
     </div>
     }
