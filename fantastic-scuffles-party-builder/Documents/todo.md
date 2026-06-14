@@ -1,8 +1,8 @@
 [ ] impact dynamique des modifs dans profile
     [ ] gestion règles spé alimentées + stockées
-    [ ] gestion règles spé affichées
+    [x] gestion règles spé affichées
     [x] gestion armures
-    [ ] gestion traits
+    [x] gestion traits
     [x] gestion misc
     [x] gestion missile et enhancement
 [ ] unit card idem unit form
