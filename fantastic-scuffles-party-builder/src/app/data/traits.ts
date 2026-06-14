@@ -297,6 +297,141 @@ export const TRAITS: Trait[] = [
         ]
     },
     {
+        id: 20,
+        name: "Feeble",
+        special: "",
+        cost: -3,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+            {
+                kind: "direct-stat",
+                stat: "attH1",
+                modifier: -1
+            },
+            {
+                kind: "direct-stat",
+                stat: "attH2",
+                modifier: -1
+            },
+            {
+                kind: "direct-stat",
+                stat: "sht",
+                modifier: -1
+            }
+        ]
+    },
+    {
+        id: 21,
+        name: "Flying",
+        special: "Ignore all Mov terrain modifiers",
+        cost: 12,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+            {
+                kind: "direct-stat",
+                stat: "mov",
+                modifier: 4
+            }
+        ]
+    },
+    {
+        id: 22,
+        name: "Frenzy",
+        special: "+1 Att for each Wound",
+        cost: 4,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 23,
+        name: "Giant slayer",
+        special: "+1 Att against larger ennemies",
+        cost: 3,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 24,
+        name: "Heroic",
+        special: "Can act twice when Activated with the wildcard token",
+        cost: 12,
+        characterOnly: true,
+        type: 'trait',
+        profileAdjustment: [
+            {
+                kind: "direct-stat",
+                stat: "dva",
+                modifier: 1
+            },
+            {
+                kind: "direct-stat",
+                stat: "attH1",
+                modifier: 1
+            },
+            {
+                kind: "direct-stat",
+                stat: "attH2",
+                modifier: 1
+            }
+        ]
+    },
+    {
+        id: 25,
+        name: "Highlander",
+        special: "+1 Att when wholly within hill or rough terrain",
+        cost: 2,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 26,
+        name: "Holy order",
+        special: "Ignore casting malus for armour and shield",
+        cost: 5,
+        characterOnly: true,
+        type: 'trait',
+        profileAdjustment: [
+            {
+                kind: "direct-stat",
+                stat: "attH1",
+                modifier: 1
+            },
+            {
+                kind: "direct-stat",
+                stat: "attH2",
+                modifier: 1
+            }
+        ]
+    },
+    {
+        id: 27,
+        name: "Hunter",
+        special: "Ignore Sht malus for moving and shooting the same turn",
+        cost: 2,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
+        id: 28,
+        name: "Impulsive",
+        special: "If not in contact, must move 1D5-1 toward the nearest ennemy and charge him after the Move",
+        cost: 1,
+        characterOnly: false,
+        type: 'trait',
+        profileAdjustment: [
+        ]
+    },
+    {
         id: 100,
         name: "Bless",
         special: "the target gains +5 to their next die roll",
