@@ -11,12 +11,13 @@
     [x] armures
     [x] armes mêlée
     [x] armes de tir
-    [ ] traits
+    [x] traits
     [ ] spells
     [x] misc
 [x] quantité/dupliqeur pour minions seulement
 [ ] règle de validation dans profile
 [ ] règles de validation dans roster
+[ ] responsive Mobile
 [ ] export PDF
 [ ] export JSON
 [ ] import JSON

@@ -206,44 +206,80 @@
                 Trait 1 :
                 <select formControlName="trait1">
                     <option [ngValue]="null">None</option>
-                    @for (trait of traits; track trait) {
-                    <option [ngValue]="trait">
-                        {{trait.name}}
-                    </option>
-                    }
+                    <optgroup label="Traits">
+                        @for (trait of traits; track trait) {
+                            <option [ngValue]="trait">
+                                {{trait.name}}
+                            </option>
+                        }
+                    </optgroup>
+                    <optgroup label="Spells">
+                        @for (spell of spells; track spell) {
+                            <option [ngValue]="spell">
+                                {{spell.name}}
+                            </option>
+                        }
+                    </optgroup>
                 </select>
             </label>
             <label>
                 Trait 2 :
                 <select formControlName="trait2">
                     <option [ngValue]="null">None</option>
-                    @for (trait of traits; track trait) {
-                    <option [ngValue]="trait">
-                        {{trait.name}}
-                    </option>
-                    }
+                    <optgroup label="Traits">
+                        @for (trait of traits; track trait) {
+                            <option [ngValue]="trait">
+                                {{trait.name}}
+                            </option>
+                        }
+                    </optgroup>
+                    <optgroup label="Spells">
+                        @for (spell of spells; track spell) {
+                            <option [ngValue]="spell">
+                                {{spell.name}}
+                            </option>
+                        }
+                    </optgroup>
                 </select>
             </label>
             <label>
                 Trait 3 :
                 <select formControlName="trait3">
                     <option [ngValue]="null">None</option>
-                    @for (trait of traits; track trait) {
-                    <option [ngValue]="trait">
-                        {{trait.name}}
-                    </option>
-                    }
+                    <optgroup label="Traits">
+                        @for (trait of traits; track trait) {
+                            <option [ngValue]="trait">
+                                {{trait.name}}
+                            </option>
+                        }
+                    </optgroup>
+                    <optgroup label="Spells">
+                        @for (spell of spells; track spell) {
+                            <option [ngValue]="spell">
+                                {{spell.name}}
+                            </option>
+                        }
+                    </optgroup>
                 </select>
             </label>
             <label>
                 Trait 4 :
                 <select formControlName="trait4">
                     <option [ngValue]="null">None</option>
-                    @for (trait of traits; track trait) {
-                    <option [ngValue]="trait">
-                        {{trait.name}}
-                    </option>
-                    }
+                    <optgroup label="Traits">
+                        @for (trait of traits; track trait) {
+                            <option [ngValue]="trait">
+                                {{trait.name}}
+                            </option>
+                        }
+                    </optgroup>
+                    <optgroup label="Spells">
+                        @for (spell of spells; track spell) {
+                            <option [ngValue]="spell">
+                                {{spell.name}}
+                            </option>
+                        }
+                    </optgroup>
                 </select>
             </label>
         </fieldset>
@@ -270,78 +306,109 @@
         <div class="ruleModal_rules">
 
             @if(archetypeSpecials[profileForm.getRawValue().archetype] != "") {
-                <p><strong>{{profileForm.getRawValue().archetype}} : </strong> {{archetypeSpecials[profileForm.getRawValue().archetype]}}</p>
+            <p><strong>{{profileForm.getRawValue().archetype}} : </strong>
+                {{archetypeSpecials[profileForm.getRawValue().archetype]}}</p>
             }
 
             @if(sizeSpecials[profileForm.getRawValue().size]) {
-                <p><strong>{{profileForm.getRawValue().size}} :</strong> {{sizeSpecials[profileForm.getRawValue().size]}}</p>
+            <p><strong>{{profileForm.getRawValue().size}} :</strong> {{sizeSpecials[profileForm.getRawValue().size]}}
+            </p>
             }
 
-            @if (profileForm.getRawValue().hand1.weapon.special != "" || (profileForm.getRawValue().hand1.enhancement && profileForm.getRawValue().hand1.enhancement?.special != "")) {
-                @if(profileForm.getRawValue().hand1.enhancement) {
-                    <p><strong>{{profileForm.getRawValue().hand1.weapon.name}} [{{profileForm.getRawValue().hand1.enhancement?.name}}] :</strong> {{profileForm.getRawValue().hand1.weapon.special + " | " + profileForm.getRawValue().hand1.enhancement?.special}} </p>
-                } @else {
-                    <p><strong>{{profileForm.getRawValue().hand1.weapon.name}} :</strong> {{profileForm.getRawValue().hand1.weapon.special}} </p>
-                } 
+            @if (profileForm.getRawValue().hand1.weapon.special != "" || (profileForm.getRawValue().hand1.enhancement &&
+            profileForm.getRawValue().hand1.enhancement?.special != "")) {
+            @if(profileForm.getRawValue().hand1.enhancement) {
+            <p><strong>{{profileForm.getRawValue().hand1.weapon.name}}
+                    [{{profileForm.getRawValue().hand1.enhancement?.name}}] :</strong>
+                {{profileForm.getRawValue().hand1.weapon.special + " | " +
+                profileForm.getRawValue().hand1.enhancement?.special}} </p>
+            } @else {
+            <p><strong>{{profileForm.getRawValue().hand1.weapon.name}} :</strong>
+                {{profileForm.getRawValue().hand1.weapon.special}} </p>
+            }
             }
 
-            @if (profileForm.getRawValue().hand2.weapon.special != "" || (profileForm.getRawValue().hand2.enhancement && profileForm.getRawValue().hand2.enhancement?.special != "")) {
-                @if(profileForm.getRawValue().hand2.enhancement) {
-                    <p><strong>{{profileForm.getRawValue().hand2.weapon.name}} [{{profileForm.getRawValue().hand2.enhancement?.name}}] :</strong> {{profileForm.getRawValue().hand2.weapon.special + " | " + profileForm.getRawValue().hand2.enhancement?.special}} </p>
-                } @else {
-                    <p><strong>{{profileForm.getRawValue().hand2.weapon.name}} :</strong> {{profileForm.getRawValue().hand2.weapon.special}} </p>
-                } 
+            @if (profileForm.getRawValue().hand2.weapon.special != "" || (profileForm.getRawValue().hand2.enhancement &&
+            profileForm.getRawValue().hand2.enhancement?.special != "")) {
+            @if(profileForm.getRawValue().hand2.enhancement) {
+            <p><strong>{{profileForm.getRawValue().hand2.weapon.name}}
+                    [{{profileForm.getRawValue().hand2.enhancement?.name}}] :</strong>
+                {{profileForm.getRawValue().hand2.weapon.special + " | " +
+                profileForm.getRawValue().hand2.enhancement?.special}} </p>
+            } @else {
+            <p><strong>{{profileForm.getRawValue().hand2.weapon.name}} :</strong>
+                {{profileForm.getRawValue().hand2.weapon.special}} </p>
             }
-            
-            @if(profileForm.getRawValue().missile.special != "" || (profileForm.getRawValue().missileMisc && profileForm.getRawValue().missileMisc?.special != "")) {
-                @if(profileForm.getRawValue().missileMisc) {
-                    <p><strong>{{profileForm.getRawValue().missile.name}} [{{profileForm.getRawValue().missileMisc?.name}}] :</strong> {{profileForm.getRawValue().missile.special + " | " + profileForm.getRawValue().missileMisc?.special}} </p>
-                } @else {
-                    <p><strong>{{profileForm.getRawValue().missile.name}} : </strong> {{profileForm.getRawValue().missile.special}}</p>
-                }
+            }
+
+            @if(profileForm.getRawValue().missile.special != "" || (profileForm.getRawValue().missileMisc &&
+            profileForm.getRawValue().missileMisc?.special != "")) {
+            @if(profileForm.getRawValue().missileMisc) {
+            <p><strong>{{profileForm.getRawValue().missile.name}} [{{profileForm.getRawValue().missileMisc?.name}}]
+                    :</strong> {{profileForm.getRawValue().missile.special + " | " +
+                profileForm.getRawValue().missileMisc?.special}} </p>
+            } @else {
+            <p><strong>{{profileForm.getRawValue().missile.name}} : </strong>
+                {{profileForm.getRawValue().missile.special}}</p>
+            }
             }
 
             @if(profileForm.getRawValue().armour.special != "") {
-                <p><strong>{{profileForm.getRawValue().armour.name}} : </strong> {{profileForm.getRawValue().armour.special}}</p>
+            <p><strong>{{profileForm.getRawValue().armour.name}} : </strong>
+                {{profileForm.getRawValue().armour.special}}</p>
             }
 
             @if(profileForm.getRawValue().misc1?.special != "") {
-                <p><strong>{{profileForm.getRawValue().misc1?.name}} :</strong> {{profileForm.getRawValue().misc1?.special}}</p>
+            <p><strong>{{profileForm.getRawValue().misc1?.name}} :</strong> {{profileForm.getRawValue().misc1?.special}}
+            </p>
             }
             @if(profileForm.getRawValue().misc2?.special != "") {
-                <p><strong>{{profileForm.getRawValue().misc2?.name}} :</strong> {{profileForm.getRawValue().misc2?.special}}</p>
+            <p><strong>{{profileForm.getRawValue().misc2?.name}} :</strong> {{profileForm.getRawValue().misc2?.special}}
+            </p>
             }
 
             @if(profileForm.getRawValue().trait1?.special != "") {
-                @if(profileForm.getRawValue().trait1?.type === "spell") {
-                    <p><strong>{{profileForm.getRawValue().trait1?.name}} ({{profileForm.getRawValue().trait1?.difficulty}}+ //  {{profileForm.getRawValue().trait1?.difficulty}}'') :</strong> {{profileForm.getRawValue().trait1?.special}}</p>
-                } @else {
-                    <p><strong>{{profileForm.getRawValue().trait1?.name}} :</strong> {{profileForm.getRawValue().trait1?.special}}</p>
-                }
+            @if(profileForm.getRawValue().trait1?.type === "spell") {
+            <p><strong>{{profileForm.getRawValue().trait1?.name}} ({{profileForm.getRawValue().trait1?.difficulty}}+ //
+                    {{profileForm.getRawValue().trait1?.difficulty}}'') :</strong>
+                {{profileForm.getRawValue().trait1?.special}}</p>
+            } @else {
+            <p><strong>{{profileForm.getRawValue().trait1?.name}} :</strong>
+                {{profileForm.getRawValue().trait1?.special}}</p>
+            }
             }
 
             @if(profileForm.getRawValue().trait2?.special != "") {
-                @if(profileForm.getRawValue().trait2?.type === "spell") {
-                    <p><strong>{{profileForm.getRawValue().trait2?.name}} ({{profileForm.getRawValue().trait2?.difficulty}}+ //  {{profileForm.getRawValue().trait2?.difficulty}}'') :</strong> {{profileForm.getRawValue().trait2?.special}}</p>
-                } @else {
-                    <p><strong>{{profileForm.getRawValue().trait2?.name}} :</strong> {{profileForm.getRawValue().trait2?.special}}</p>
-                }
+            @if(profileForm.getRawValue().trait2?.type === "spell") {
+            <p><strong>{{profileForm.getRawValue().trait2?.name}} ({{profileForm.getRawValue().trait2?.difficulty}}+ //
+                    {{profileForm.getRawValue().trait2?.difficulty}}'') :</strong>
+                {{profileForm.getRawValue().trait2?.special}}</p>
+            } @else {
+            <p><strong>{{profileForm.getRawValue().trait2?.name}} :</strong>
+                {{profileForm.getRawValue().trait2?.special}}</p>
+            }
             }
 
             @if(profileForm.getRawValue().trait3?.special != "") {
-                @if(profileForm.getRawValue().trait3?.type === "spell") {
-                    <p><strong>{{profileForm.getRawValue().trait3?.name}} ({{profileForm.getRawValue().trait3?.difficulty}}+ //  {{profileForm.getRawValue().trait3?.difficulty}}'') :</strong> {{profileForm.getRawValue().trait3?.special}}</p>
-                } @else {
-                    <p><strong>{{profileForm.getRawValue().trait3?.name}} :</strong> {{profileForm.getRawValue().trait3?.special}}</p>
-                }
+            @if(profileForm.getRawValue().trait3?.type === "spell") {
+            <p><strong>{{profileForm.getRawValue().trait3?.name}} ({{profileForm.getRawValue().trait3?.difficulty}}+ //
+                    {{profileForm.getRawValue().trait3?.difficulty}}'') :</strong>
+                {{profileForm.getRawValue().trait3?.special}}</p>
+            } @else {
+            <p><strong>{{profileForm.getRawValue().trait3?.name}} :</strong>
+                {{profileForm.getRawValue().trait3?.special}}</p>
+            }
             }
 
             @if(profileForm.getRawValue().trait4?.special != "") {
-                @if(profileForm.getRawValue().trait4?.type === "spell") {
-                    <p><strong>{{profileForm.getRawValue().trait4?.name}} ({{profileForm.getRawValue().trait4?.difficulty}}+ //  {{profileForm.getRawValue().trait4?.difficulty}}'') :</strong> {{profileForm.getRawValue().trait4?.special}}</p>
-                } @else {
-                    <p><strong>{{profileForm.getRawValue().trait4?.name}} :</strong> {{profileForm.getRawValue().trait4?.special}}</p>
-                }
+            @if(profileForm.getRawValue().trait4?.type === "spell") {
+            <p><strong>{{profileForm.getRawValue().trait4?.name}} ({{profileForm.getRawValue().trait4?.difficulty}}+ //
+                    {{profileForm.getRawValue().trait4?.difficulty}}'') :</strong>
+                {{profileForm.getRawValue().trait4?.special}}</p>
+            } @else {
+            <p><strong>{{profileForm.getRawValue().trait4?.name}} :</strong>
+                {{profileForm.getRawValue().trait4?.special}}</p>
+            }
             }
         </div>
     </div>

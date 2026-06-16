@@ -82,6 +82,9 @@ export const STANDALONE_MISC =
       item.kind === "standalone"
   );
 
+export const NORMAL_TRAITS = TRAITS.filter((trait) => trait.type != "spell");
+export const SPELL_TRAITS = TRAITS.filter((trait) => trait.type === "spell");
+
 const defaultHand1 = MELEE_WEAPONS[0];
 const defaultHand2 = MELEE_WEAPONS[0];
 const defaultMissile = MISSILE_WEAPONS[0];
@@ -115,7 +118,9 @@ export class Drawer {
   weaponEnhancements = WEAPON_ENHANCEMENTS;
   missileWeaponEnhancements = MISSILE_ENHANCEMENTS;
   standaloneMiscItems = STANDALONE_MISC;
-  traits = TRAITS;
+  // traits = TRAITS;
+  traits = NORMAL_TRAITS;
+  spells = SPELL_TRAITS;
 
   archetypeSpecials: Record<Archetype, string> = {
     warrior: "Can attack with each Action during the same activation",
