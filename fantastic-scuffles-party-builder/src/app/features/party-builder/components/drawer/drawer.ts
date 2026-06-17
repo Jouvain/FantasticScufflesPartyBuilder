@@ -118,7 +118,6 @@ export class Drawer {
   weaponEnhancements = WEAPON_ENHANCEMENTS;
   missileWeaponEnhancements = MISSILE_ENHANCEMENTS;
   standaloneMiscItems = STANDALONE_MISC;
-  // traits = TRAITS;
   traits = NORMAL_TRAITS;
   spells = SPELL_TRAITS;
 
@@ -181,7 +180,7 @@ export class Drawer {
   }
 
   public cancel(): void {
-    console.log("test");
+    this.profileForm.reset();
     this.drawerStore.close();
   }
 

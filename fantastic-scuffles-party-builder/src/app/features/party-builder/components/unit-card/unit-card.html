@@ -2,16 +2,15 @@
     <div class="unit-card_desc">
         <div class="desc_main">
             <h3 class="title--accent">{{profile()?.nom}}</h3>
-            <p>{{profile()?.size}}</p>
-            <p>{{profile()?.archetype}}</p>
+            <p>, {{profile()?.size}}  {{profile()?.archetype}}</p>
         </div>
         <div class="desc_float">
             @if(profile()?.isCharacter) {
-                <p>{{profile()?.cost}} pts</p>
+            <p>{{profile()?.cost}} pts</p>
             } @else {
-                <p>{{profile()?.cost}} * Qty: {{profile()?.quantity}} = {{profile()?.cost! * profile()?.quantity!}} pts</p>
+            <p>{{profile()?.cost}} * Qty: {{profile()?.quantity}} = {{profile()?.cost! * profile()?.quantity!}} pts</p>
             }
-            
+
         </div>
     </div>
     <table class="unit-stats">
@@ -41,40 +40,93 @@
             </tr>
         </tbody>
     </table>
-    <div class="unit-card_slots">
-        <p class="strong">Equipment :</p>
-        <div class="list">
-            <p>{{profile()?.hand1?.weapon?.name}}</p>
-            @if(profile()?.hand1?.enhancement; as enhancement) {
-                <p>{{enhancement.name}} (Hand 1)</p>
-            }
-            <p>{{profile()?.hand2?.weapon?.name}}</p>
-            @if(profile()?.hand2?.enhancement; as enhancement) {
-                <p>{{enhancement.name}} (Hand 2)</p>
-            }
-            <p>{{profile()?.missile?.name}}</p>
-            <p>{{profile()?.armour?.name}}</p>
-            <p>{{profile()?.misc1?.name}}</p>
-            <p>{{profile()?.misc2?.name}}</p>
-        </div>
+    <div class="unit-customs">
+        <table>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Trait 1 :</th>
+                @if(profile()?.trait1?.type != "spell") {
+                <td class="unit-customs_blocks">{{profile()?.trait1?.name}}</td>
+                } @else {
+                <td class="unit-customs_blocks">{{profile()?.trait1?.name}} <em>({{profile()?.trait1?.difficulty}}+ //
+                        {{profile()?.trait1?.range}}'')</em></td>
+                }
+            </tr>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Trait 2 :</th>
+                @if(profile()?.trait2?.type != "spell") {
+                <td class="unit-customs_blocks">{{profile()?.trait2?.name}}</td>
+                } @else {
+                <td class="unit-customs_blocks">{{profile()?.trait2?.name}} <em>({{profile()?.trait2?.difficulty}}+ //
+                        {{profile()?.trait2?.range}}'')</em></td>
+                }
+            </tr>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Trait 3 :</th>
+                @if(profile()?.trait3?.type != "spell") {
+                <td class="unit-customs_blocks">{{profile()?.trait3?.name}}</td>
+                } @else {
+                <td class="unit-customs_blocks">{{profile()?.trait3?.name}} <em>({{profile()?.trait3?.difficulty}}+ //
+                        {{profile()?.trait3?.range}}'')</em></td>
+                }
+            </tr>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Trait 4 :</th>
+                @if(profile()?.trait4?.type != "spell") {
+                <td class="unit-customs_blocks">{{profile()?.trait4?.name}}</td>
+                } @else {
+                <td class="unit-customs_blocks">{{profile()?.trait4?.name}} <em>({{profile()?.trait4?.difficulty}}+ //
+                        {{profile()?.trait4?.range}}'')</em></td>
+                }
+            </tr>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Misc 1 :</th>
+                <td class="unit-customs_blocks">{{profile()?.misc1?.name}}</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Hand 1 :</th>
+                @if(profile()?.hand1?.enhancement; as enhancement) {
+                <td class="unit-customs_blocks">{{profile()?.hand1?.weapon?.name}} <em>({{enhancement.name}})</em></td>
+                } @else {
+                <td class="unit-customs_blocks">{{profile()?.hand1?.weapon?.name}}</td>
+                }
+            </tr>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Hand 2 :</th>
+                @if(profile()?.hand2?.enhancement; as enhancement) {
+                <td class="unit-customs_blocks">{{profile()?.hand2?.weapon?.name}} <em>({{enhancement.name}})</em></td>
+                } @else {
+                <td class="unit-customs_blocks">{{profile()?.hand2?.weapon?.name}}</td>
+                }
+            </tr>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Missile :</th>
+                @if(profile()?.missileMisc) {
+                <td class="unit-customs_blocks">{{profile()?.missile?.name}} <em>({{profile()?.missileMisc?.name}})</em></td>
+                } @else {
+                <td class="unit-customs_blocks">{{profile()?.missile?.name}}</td>
+                }
+            </tr>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Armour :</th>
+                <td class="unit-customs_blocks">{{profile()?.armour?.name}}</td>
+            </tr>
+            <tr>
+                <th class="unit-customs_blocks unit-customs_blocks--title">Misc 2 :</th>
+                <td class="unit-customs_blocks">{{profile()?.misc2?.name}}</td>
+            </tr>
+        </table>
     </div>
-    <div class="unit-card_slots">
-        <p class="strong">Traits :</p>
-        <div class="list">
-            <p>{{profile()?.trait1?.name}}</p>
-            <p>{{profile()?.trait2?.name}}</p>
-            <p>{{profile()?.trait3?.name}}</p>
-            <p>{{profile()?.trait4?.name}}</p>
-        </div>
-    </div>
+    
     <div class="unit-controls">
         <app-btn-action label="Edit" icon="/icons/pencil.svg" [small]=true (click)="edit()" />
-        
+
         @if(!profile()?.isCharacter) {
-            <app-btn-action label="Duplicate" icon="/icons/files.svg" [small]=true (click)="duplicate(profile()!)" />
+        <app-btn-action label="Duplicate" icon="/icons/files.svg" [small]=true (click)="duplicate(profile()!)" />
         }
         @if(profile()?.quantity! > 1) {
-            <app-btn-action label="Remove" icon="/icons/down.svg" [small]="true" (click)="removeOne(profile()!)" />
+        <app-btn-action label="Remove" icon="/icons/down.svg" [small]="true" (click)="removeOne(profile()!)" />
         }
 
         <app-btn-action label="Erase" icon="/icons/cancel.svg" [small]=true (click)="delete(profile()?.id)" />

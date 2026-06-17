@@ -13,6 +13,40 @@
     background-color: @background-secondary;
 }
 
+.unit-customs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: @space-l 0 @space-l 0;
+
+    table {
+        width: 50%;
+    }
+    th {
+        width: 40%;
+    }
+    td {
+        width: 60%;
+    }
+
+    &_blocks {
+        text-align: center;
+        padding: @space-xs;
+        border: 1px solid @background-strong;
+        height: @space-2xl;
+        border: 2px solid @background-strong;
+        // border-radius: 0 @space-s @space-s 0;
+
+        &--title {
+            background-color: @accent;
+            font-weight: bold;
+            color: @text-secondary;
+            // border-radius:  @space-s 0 0 @space-s;
+        }
+    }
+
+}
+
 .unit-card_desc {
     position: relative;
     align-items: center;
@@ -20,7 +54,7 @@
 }
 
 .desc_main {
-    .unit-listing();
+    display: flex;
     align-items: center;
 }
 

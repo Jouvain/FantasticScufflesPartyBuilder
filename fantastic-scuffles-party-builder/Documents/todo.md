@@ -1,5 +1,4 @@
-[ ] impact dynamique des modifs dans profile
-    [ ] gestion règles spé alimentées + stockées
+[x] impact dynamique des modifs dans profile
     [x] gestion règles spé affichées
     [x] gestion armures
     [x] gestion traits
@@ -7,12 +6,12 @@
     [x] gestion missile et enhancement
 [ ] unit card idem unit form
 [ ] budget dynamique
-[ ] données complètes
+[x] données complètes
     [x] armures
     [x] armes mêlée
     [x] armes de tir
     [x] traits
-    [ ] spells
+    [x] spells
     [x] misc
 [x] quantité/dupliqeur pour minions seulement
 [ ] règle de validation dans profile
