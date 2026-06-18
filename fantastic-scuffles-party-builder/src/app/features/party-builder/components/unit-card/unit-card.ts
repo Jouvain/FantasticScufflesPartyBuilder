@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { BtnAction } from "../btn-action/btn-action";
 import { DrawerStore } from '../../services/drawer-store';
 import { PartyStore } from '../../services/party-store';
