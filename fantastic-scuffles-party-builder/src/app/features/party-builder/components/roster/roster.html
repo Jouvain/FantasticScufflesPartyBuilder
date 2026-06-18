@@ -1,4 +1,4 @@
-<div class="roster">
+<div class="roster" [class.disabled]="cursorIsEnabled()">
     @for (profile of partyStore.profiles(); track profile.id) {
         <app-unit-card [profile]="profile" />
     }
