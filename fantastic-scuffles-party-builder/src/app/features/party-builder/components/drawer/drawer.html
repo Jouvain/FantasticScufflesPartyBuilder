@@ -299,7 +299,7 @@
         @if(profileForm.errors?.['profileRestrictionViolations']; as violations) {
             <div class="errors">
                 @for (violation of violations; track violation.code) {
-                    <p class="error">{{violation.message}}</p>
+                    <p class="error">| {{violation.message}} |</p>
                 }
             </div>
         }
