@@ -4,8 +4,8 @@
     [x] gestion traits
     [x] gestion misc
     [x] gestion missile et enhancement
-[ ] unit card idem unit form
-[ ] budget dynamique
+[x] unit card idem unit form
+[x] budget dynamique
 [x] données complètes
     [x] armures
     [x] armes mêlée
@@ -14,14 +14,14 @@
     [x] spells
     [x] misc
 [x] quantité/dupliqeur pour minions seulement
-[ ] règle de validation dans profile
-[ ] règles de validation dans roster
+[x] règle de validation dans profile
+[x] règles de validation dans roster
 [ ] responsive Mobile
 [ ] export PDF
 [ ] export JSON
 [ ] import JSON
-[ ] contraintes
-    [ ] archetype et Traits
-    [ ] traits mutuellement exclusifs
-    [ ] limites de spells
-    [ ] limites de grip single/double
+[x] contraintes
+    [x] archetype et Traits
+    [x] traits mutuellement exclusifs
+    [x] limites de spells
+    [x] limites de grip single/double

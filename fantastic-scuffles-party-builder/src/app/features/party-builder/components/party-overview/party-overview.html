@@ -1,5 +1,6 @@
 <div class="overview-container">
-    <h2 class="title--accent">Golden Silence</h2>
+    <!-- <h2 class="title--accent">Golden Silence</h2> -->
+    <input class="title--accent input-title" type="text" [value]="partyStore.partyName()" (input)="partyStore.setPartyName($any($event.target).value)" />
     <div class="overview">
         <div class="overview_stats">
             <div class="statblock">

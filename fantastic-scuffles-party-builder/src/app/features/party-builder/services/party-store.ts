@@ -7,6 +7,7 @@ export class PartyStore {
   budget: WritableSignal<number> = signal<number>(150);
   maxProfiles: number = 9;
   minCharacters: number = 1;
+  partyName: WritableSignal<string> = signal("Party name");
 
   //#region COMPUTED
 
@@ -52,6 +53,10 @@ export class PartyStore {
 
   public setBudget(value: number): void {
     this.budget.set(value);
+  }
+
+  public setPartyName(value: string): void {
+    this.partyName.set(value);
   }
 
 private getNextProfileId(profiles: ProfileDefinition[]): number {
