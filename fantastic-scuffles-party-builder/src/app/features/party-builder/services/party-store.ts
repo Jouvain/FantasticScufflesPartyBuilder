@@ -1,10 +1,10 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal, WritableSignal } from '@angular/core';
 import { ProfileDefinition } from '../../../models/profile-definition';
 
 @Injectable()
 export class PartyStore {
   profiles = signal<ProfileDefinition[]>([]);
-  budget: number = 100;
+  budget: WritableSignal<number> = signal<number>(150);
   maxProfiles: number = 9;
   minCharacters: number = 1;
 
@@ -23,7 +23,7 @@ export class PartyStore {
   );
 
   validationState = computed(() => ({
-    budgetOk: this.totalCost() <= this.budget,
+    budgetOk: this.totalCost() <= this.budget(),
     profilesOk: this.profileCount() <= this.maxProfiles,
     characterOk: this.characterCount() >= this.minCharacters,
   }));
@@ -48,6 +48,10 @@ export class PartyStore {
     this.profiles.update((profiles) =>
       profiles.filter((profile) => profile.id !== profileId)
     );
+  }
+
+  public setBudget(value: number): void {
+    this.budget.set(value);
   }
 
 private getNextProfileId(profiles: ProfileDefinition[]): number {

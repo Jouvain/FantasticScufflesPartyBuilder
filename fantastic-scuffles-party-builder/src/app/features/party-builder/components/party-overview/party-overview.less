@@ -11,9 +11,11 @@
 }
 
 .overview_stats {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: @space-md;
 }
 .overview_controls {
@@ -35,4 +37,11 @@
         margin: 0;
         height: 48px;
     }
+    input {
+        width: 30%;
+    }
+}
+
+.shared-input {
+    width: 60%;
 }

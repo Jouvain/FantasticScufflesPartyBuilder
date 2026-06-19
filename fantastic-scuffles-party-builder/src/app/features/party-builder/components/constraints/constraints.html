@@ -13,7 +13,7 @@
             <li class="constraints_item"><img src="/icons/cancel.svg" class="constraints_icon"/>At least one Character</li>
         }
         
-        @if(partyStore.totalCost() <= partyStore.budget) {
+        @if(partyStore.totalCost() <= partyStore.budget()) {
             <li class="constraints_item"><img src="/icons/confirmed.svg" class="constraints_icon"/>Budget</li>
         } @else {
             <li class="constraints_item"><img src="/icons/cancel.svg" class="constraints_icon"/>Budget</li>          
