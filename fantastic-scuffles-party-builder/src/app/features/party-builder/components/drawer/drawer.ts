@@ -26,6 +26,7 @@ import {
 } from '../../rules/profile-derivation-rules';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { EquippedMeleeWeapon } from '../../../../models/equipped-melee-weapon';
+import { profileRestrictionValidator } from '../../rules/profile-restriction-rules';
 
 type ProfileForm = {
   id: FormControl<number>;
@@ -234,7 +235,11 @@ export class Drawer {
         nonNullable: true,
         validators: [Validators.min(0)]
       })
-    });
+    },
+    {
+      validators: [profileRestrictionValidator]
+    }
+  );
   }
 
 
