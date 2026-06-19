@@ -30,11 +30,13 @@ export class UnitCard {
 
   public duplicate(profile: ProfileDefinition): void {
     profile.quantity += 1;
+    this.partyStore.updateProfile(profile);
   }
 
   public removeOne(profile: ProfileDefinition): void {
     if (profile.quantity > 1) {
       profile.quantity -= 1;
+      this.partyStore.updateProfile(profile);
     }
   }
 

@@ -4,12 +4,14 @@ import { ProfileDefinition } from '../../../models/profile-definition';
 @Injectable()
 export class PartyStore {
   profiles = signal<ProfileDefinition[]>([]);
-
+  budget: number = 100;
+  maxProfiles: number = 9;
+  minCharacters: number = 1;
 
   //#region COMPUTED
 
   totalCost = computed(() =>
-    this.profiles().reduce((sum, profile) => sum + profile.cost, 0)
+    this.profiles().reduce((sum, profile) => sum + profile.cost * profile.quantity, 0)
   );
 
   profileCount = computed(() =>
@@ -21,9 +23,9 @@ export class PartyStore {
   );
 
   validationState = computed(() => ({
-    budgetOk: this.totalCost() <= 100,
-    profilesOk: this.profileCount() <= 9,
-    characterOk: this.characterCount() >= 1,
+    budgetOk: this.totalCost() <= this.budget,
+    profilesOk: this.profileCount() <= this.maxProfiles,
+    characterOk: this.characterCount() >= this.minCharacters,
   }));
 
   //#endregion

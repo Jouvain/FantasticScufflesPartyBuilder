@@ -1,8 +1,22 @@
 <div class="constraints">
     <h2 class="title--accent">Constraints</h2>
     <ul class="constraints_list">
-        <li class="constraints_item"><img src="/icons/confirmed.svg" class="constraints_icon"/>At least one Character</li>
-        <li class="constraints_item" > <img src="/icons/confirmed.svg" class="constraints_icon"/>Max 9 Profiles</li>
-        <li class="constraints_item"><img src="/icons/cancel.svg" class="constraints_icon"/> Budget Exceeded</li>
+        @if(partyStore.profileCount() <= partyStore.maxProfiles) {
+            <li class="constraints_item" > <img src="/icons/confirmed.svg" class="constraints_icon"/>Max 9 Profiles</li>
+        } @else {
+            <li class="constraints_item" > <img src="/icons/cancel.svg" class="constraints_icon"/>Max 9 Profiles</li>         
+        }
+
+        @if(partyStore.characterCount() >= partyStore.minCharacters) {
+            <li class="constraints_item"><img src="/icons/confirmed.svg" class="constraints_icon"/>At least one Character</li>
+        } @else {
+            <li class="constraints_item"><img src="/icons/cancel.svg" class="constraints_icon"/>At least one Character</li>
+        }
+        
+        @if(partyStore.totalCost() <= partyStore.budget) {
+            <li class="constraints_item"><img src="/icons/confirmed.svg" class="constraints_icon"/>Budget</li>
+        } @else {
+            <li class="constraints_item"><img src="/icons/cancel.svg" class="constraints_icon"/>Budget</li>          
+        }
     </ul>
 </div>
